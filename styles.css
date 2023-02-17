@@ -1,0 +1,148 @@
+.header {
+  color: red;
+  margin-bottom: -2%;
+}
+.Calculator {
+  background: lightblue;
+  width: 48%; height: 97%;
+  position: absolute;
+  left: 1%;
+  text-align: center;
+  border: yellow;
+}
+
+.gridBackground {
+  background: #111;
+  opacity: 0.6;
+  width: 43%; height: 92%;
+  position: absolute;
+  left: 55%; top: 1%;
+}
+
+.methodChanger {
+  text-align: left;
+  align-items: center;
+  position: fixed;
+  top: 85%; left: 8%;
+  width: 50%; height: 50%;
+}
+
+.form-check {
+  padding-top: 2%;
+}
+
+body {
+  overflow: hidden;
+}
+
+#variablesTable {
+  padding-left: 10%;
+  text-align: left;
+  position: absolute;
+  top: 12%; left: 6%;
+}
+
+.var {
+  white-space: nowrap;
+  margin-top: 10%; margin-left: 10%;
+  width: 40%;
+}
+
+label {
+  font-family: cursive;
+}
+
+.result {
+  position: absolute;
+  top: 54%; right: 60%;
+  padding: 2%; padding-left: 4%; padding-right: 4%;
+}
+
+.reset {
+  position: absolute;
+  top: 54%; right: 25%;
+  padding: 2%;
+}
+
+#calculateError {
+  display: none;
+}
+
+#relativeError {
+  position: absolute;
+  top: 62%; left: 5%;
+}
+
+.varErr {
+  margin-top: 10%;
+}
+
+input[name="x"]{
+  margin-left: 13%;
+}
+
+input[name="fx"]{
+  margin-left: 13%;
+  width: 33%;
+  font-weight: bold;
+  background-color: rgb(182, 253, 182);
+}
+
+.errorRel {
+  position: absolute;
+  top: 70%; right: 10%;
+  padding: 2%;
+}
+
+#grid {
+ position: absolute;
+ top: 4%; left: 3%;
+}
+
+#initWarning {
+  z-index: 999;
+  display: block;
+  color: white;
+  font-weight: bold;
+  background-color: green;
+  position: fixed; top: 7%;
+  animation: dropAndFade 30s ease forwards;
+}
+
+.errorWarning {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  position: fixed;top: 12%;
+  animation: drop 0.7s ease forwards;
+  display: none;
+  animation: dropAndFade 30s ease forwards;
+
+}
+
+
+@keyframes dropAndFade{
+  0%{ display: block; }
+  2%{ transform: translateY(30%)}
+  5%{ transform: translateY(10%);  }
+  50%{opacity: 1;}
+  100%{transform: translateY(10%); opacity: 0;}
+}
+
+.errorRes{
+  position: absolute; top: 70%; right: 11%;
+  padding: 2%;
+}
+
+input[name="trueVal"] {
+  margin-left: 11%;
+  width: 40%;
+  font-weight: bold;
+}
+
+input[name="errRel"] {
+  margin-left: 11%;
+  width: 33%;
+  font-weight: bold;
+  background-color: rgb(211, 168, 112);
+}
