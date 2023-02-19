@@ -2,9 +2,32 @@ import { Calculator } from './modules/calculator.js';
 
 let calculator = new Calculator();
 
-let displayError = false;
-
 document.getElementById("initWarning").animation = "dropAndFade 30s ease forwards";
+
+  var parameters = {
+    "id":"ggbApplet",
+    "appName":"classic",
+    "width":750,
+    "height":745,
+    "showToolBar":false,
+    "borderColor":null,
+    "showMenuBar":false,
+    "allowStyleBar":false,
+    "showAlgebraInput":false,
+    "enableLabelDrags":false,
+    "enableShiftDragZoom":true,
+    "capturingThreshold":null,
+    "showToolBarHelp":false,
+    "errorDialogsActive":false,
+    "showTutorialLink":false,
+    "showLogging":false,
+    "useBrowserForJS":false,
+    "enableUndoRedo":false,
+    "filename": "./grid.ggb"
+  }
+  let applet = new GGBApplet(parameters, '5.0', 'applet_container');
+  window.onload = function() { applet.inject('grid'); } 
+  
 
 document.body.addEventListener('mouseup', function(e) {
   document.getElementById("initWarning").style.display = "none";
@@ -15,7 +38,6 @@ document.body.addEventListener('mouseup', function(e) {
 
 document.getElementById("linearM").checked = true;
 resetFields();
-drawCanvas();
 
 const radioButtons = document.querySelectorAll('input[name="methodSelector"]');
 for (const radioButton of radioButtons) {
@@ -43,6 +65,38 @@ function selectMethod(methodName) {
   return;
 }
 
+function drawPoints(x0, y0, x1, y1, x2, y2, x, y, hasX2) {
+  ggbApplet.reset();
+  let scaleFactorX = (hasX2) ? (x0+x1+x2+x) : (x0+x1+x);
+  let scaleFactorY = (hasX2) ? (y0+y1+y2+y) : (y0+y1+y);
+  if (scaleFactorY==0) { scaleFactorY = 1;}
+  let maxX = (hasX2) ? Math.max(...[x0, x1, x2, x]) : Math.max(...[x0, x1, x]);
+  let minX = (hasX2) ? Math.min(...[x0, x1, x2, x]) : Math.min(...[x0, x1, x]);
+  let maxY = (hasX2) ? Math.max(...[y0, y1, y2, y]) : Math.max(...[y0, y1, y]);
+  let minY = (hasX2) ? Math.min(...[y0, y1, y2, y]) : Math.min(...[y0, y1, y]);
+  let maxFactor = Math.max(scaleFactorX, scaleFactorY);
+  ggbApplet.evalCommand(`ZoomIn(-${minX+scaleFactorX}, -${minY+scaleFactorY}, ${maxX+scaleFactorX}, ${maxY+scaleFactorY})`);
+  ggbApplet.evalCommand(`P0=(${x0},${y0})`);
+  ggbApplet.evalCommand(`P1=(${x1},${y1})`);
+  ggbApplet.evalCommand('s1 = Segment(P0,P1)');
+  ggbApplet.setLabelVisible('s1', false); 
+  ggbApplet.evalCommand(`P=(${x},${y})`);
+  ggbApplet.evalCommand('s2 = Segment(P,P1)');
+  ggbApplet.setLabelVisible('s2', false); 
+  if(hasX2){ 
+    ggbApplet.evalCommand(`P2=(${x2},${y2})`); 
+    ggbApplet.evalCommand('s3 = Segment(P2,P)');
+    ggbApplet.setLabelVisible('s3', false); 
+  }
+  ggbApplet.evalCommand('SetColor(P, Red)');
+  ggbApplet.evalCommand('SetCaption(P, "Interpolación")');
+  let usedMethod =  (x == minX || x == maxX) ? "Extrapolación" : "Interpolación";
+  ggbApplet.evalCommand(`SetCaption(P, "${usedMethod}")`);
+  return;
+}
+
+window.drawPoints=drawPoints;
+
 //Linear Interpolation Method
 document.getElementById("resultLinear").addEventListener('click', function(e) {
   let x0L = document.getElementById('x0L').value;
@@ -57,6 +111,7 @@ document.getElementById("resultLinear").addEventListener('click', function(e) {
   }
   let res = calculator.linearInterpolation(+x0L,+fx0L,+x1L,+fx1L,+xL);
   document.getElementById("fxL").value = res;
+  drawPoints(+x0L,+fx0L,+x1L,+fx1L,0, 0, +xL, +res, false);
   relativeError(res);
 });
 
@@ -76,10 +131,11 @@ document.getElementById("resultCuadratic").addEventListener('click', function(e)
   }
   let res = calculator.cuadraticInterpolation(+x0C,+fx0C,+x1C,+fx1C,+x2C,+fx2C,+xC);
   document.getElementById("fxC").value = res;
+  drawPoints(+x0C,+fx0C,+x1C,+fx1C,+x2C,+fx2C,+xC,+res,true);
   relativeError(res);
 });
 
-//Lastrange 1sd Order
+//Lagrange 1sd Order
 document.getElementById("resultLagrange1").addEventListener('click', function(e) {
   let x0L1 = document.getElementById('x0L1').value;
   let fx0L1 = document.getElementById('fx0L1').value;
@@ -93,25 +149,7 @@ document.getElementById("resultLagrange1").addEventListener('click', function(e)
   }
   let res = calculator.lagrange1stInterpolation(+x0L1,+fx0L1,+x1L1,+fx1L1,+xL1);
   document.getElementById("fxL1").value = res;
-  relativeError(res);
-});
-
-//Cuadratic Interpolation Method
-document.getElementById("resultCuadratic").addEventListener('click', function(e) {
-  let x0C = document.getElementById('x0C').value;
-  let fx0C = document.getElementById('fx0C').value;
-  let x1C = document.getElementById('x1C').value;
-  let fx1C = document.getElementById('fx1C').value;
-  let x2C = document.getElementById('x2C').value;
-  let fx2C = document.getElementById('fx2C').value;
-  let xC = document.getElementById('xC').value;
-  let onlyNum = checkOnlyNumbers(x0C,fx0C, x1C, fx1C, x2C,fx2C, xC, true);
-  if (!onlyNum) {
-    raiseUserError();
-    return;
-  }
-  let res = calculator.cuadraticInterpolation(+x0C,+fx0C,+x1C,+fx1C,+x2C,+fx2C,+xC);
-  document.getElementById("fxC").value = res;
+  drawPoints(+x0L1,+fx0L1,+x1L1,+fx1L1,+xL1,0,0, +res, false);
   relativeError(res);
 });
 
@@ -131,10 +169,11 @@ document.getElementById("resultLagrange2").addEventListener('click', function(e)
   }
   let res = calculator.lagrange2ndInterpolation(+x0L2,+fx0L2,+x1L2,+fx1L2,+x2L2,+fx2L2,+xL2);
   document.getElementById("fxL2").value = res;
+  drawPoints(+x0L2,+fx0L2,+x1L2,+fx1L2,+x2L2,+fx2L2,+xL2,+res,true);
   relativeError(res);
 });
 
-function checkOnlyNumbers(x0, fx0, x1, fx1, x2, fx2, x, hasX2){
+export function checkOnlyNumbers(x0, fx0, x1, fx1, x2, fx2, x, hasX2){
   if (x0 == x1 || x == x0 ||x == x1 || ((x == x2 || x1==x2 || x2==x0) && hasX2)) { return false;}
   let checkNumbers = [x0, fx0, x1, fx1, x2, fx2, x];
   for(let i = 0; i < 7; i++){
@@ -163,6 +202,7 @@ function resetFields() {
   document.getElementById("calculateError").style.display = "none";
   return;
 }
+window.resetFields=resetFields;
 
 function relativeError(aproxVal) {
   document.getElementById("trueVal").value = 0;
@@ -181,23 +221,3 @@ function relativeError(aproxVal) {
   });
 }
 
-function drawCanvas() {
-  var canvas = document.getElementById("grid");
-  var ctx = canvas.getContext("2d");
-  const x = canvas.width;
-  const y = canvas.height;
-  let incX = x / 20;
-  let incY = y / 20;
-  ctx.clearRect(0,0, x, y);
-  ctx.strokeStyle = "white";
-  for (let i = 0; i <= x; i+= incX) {
-    ctx.moveTo(i,0);
-    ctx.lineTo(i,y);
-    ctx.stroke();
-  }
-  for (let i = 0; i <= y; i+= incY) {
-    ctx.moveTo(0,i+0.2);
-    ctx.lineTo(x,i+0.2);
-    ctx.stroke();
-  }
-}

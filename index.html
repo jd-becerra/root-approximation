@@ -8,8 +8,13 @@
         <link rel="stylesheet" href="styles.css"  type="text/css" />
         <!-- END OWN CSS FILES-->
 	<script type="module" src="main.js"></script>
-    </head>
+  <script type='module'>
+    function points() { ggbApplet.evalCommand("A=(2,2)");}
+ </script>
+  <script type="text/javascript" src="https://cdn.geogebra.org/apps/deployggb.js"></script>
+  </head>
   <body>
+    <div id="calcBackground">
     <div class="Calculator">
       <h3 class="header">Métodos de interpolación</h3>
       <div class="methods">  
@@ -194,22 +199,22 @@
         <table id="relativeError">
           <tr>
             <td>
-              <label for="trueVal">Valor verdadero de X : </label>
+              <label for="trueVal">Valor<br> verdadero de X : </label>
               <input type="number" id="trueVal" name="trueVal" value="0" class="varErr" step="any">
             </td>
           </tr>
           <tr>
-            <td>
-              <label for="errRel">Error Relativo de X : </label>
+            <td name="errRelDiv">
+              <label for="errRel" name="errRel1">Error<br> Relativo de X : </label>
               <input type="text" id="errRel" name="errRel" class="varErr" readonly>
-              <label for="errRel"> % </label>
+              <label for="errRel" name="errRel2"> % </label>
             </td>
           </tr>
         </table>
         <button type="button" value="Submit" class="errorRes" id="errorRes">Calcular Error Relativo</button>
       </div>
       <div class="resetButton">
-        <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
+        <button type="button" value="Resetear" onclick="ggbApplet.reset();" class="reset" id="reset">Resetear Valores</button>
       </div>
       <div class="methodChanger">    
         <table>
@@ -217,36 +222,36 @@
             <td>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="methodSelector" id="linearM" checked="checked" value="linear"">
-                <label class="form-check-label" for="flexRadioDefault1"> Método Lineal </label>
+                <label class="form-check-label" for="flexRadioDefault1"> Método<br> Lineal </label>
               </div>
             </td>
             <td>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="methodSelector" id="cuadraticM" value="cuadratic">
-                <label class="form-check-label" for="flexRadioDefault1"> Método Cuadrático </label>
+                <label class="form-check-label" for="flexRadioDefault1"> Método<br> Cuadrático </label>
               </div>
             </td>
-          </tr>
-          <tr>
             <td>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="methodSelector" id="lagrange1M" value="lagrange1">
-                <label class="form-check-label" for="flexRadioDefault1"> Método Lagrange de Primer Orden </label>
+                <label class="form-check-label" for="flexRadioDefault1"> Método Lagrange<br> de Primer Orden </label>
               </div>
             </td>
             <td>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="methodSelector" id="lagrange2M" value="lagrange2">
-                <label class="form-check-label" for="flexRadioDefault1"> Método Lagrange de Segundo Orden </label>
+                <label class="form-check-label" for="flexRadioDefault1"> Método Lagrange<br> de Segundo Orden </label>
               </div>
             </td>
           </tr>
         </table>
       </div>
     </div>
-  <div class="Grid">
+  </div>
+  <div class="grid", id="grid">
+  <!--<iframe src="https://www.geogebra.org/classic/ur6mxqtx?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
     <div class="gridBackground"><div>
-    <canvas id="grid" width="550" height="550"></canvas>
+    <canvas id="grid" width="623" height="591"></canvas>-->
   </div>
   <div class="warnings">
     <dialog open class="initWarning" id="initWarning">

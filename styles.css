@@ -1,34 +1,38 @@
+
 .header {
   color: red;
   margin-bottom: -2%;
 }
 .Calculator {
+  position: static;
+}
+
+#calcBackground {
   background: lightblue;
   width: 48%; height: 97%;
-  position: absolute;
+  position: fixed;
   left: 1%;
   text-align: center;
-  border: yellow;
 }
 
 .gridBackground {
   background: #111;
   opacity: 0.6;
-  width: 43%; height: 92%;
+  width: 46%; height: 97%;
   position: absolute;
-  left: 55%; top: 1%;
+  left: 52%;
 }
 
 .methodChanger {
-  text-align: left;
-  align-items: center;
+  text-align: center;
   position: fixed;
   top: 85%; left: 8%;
-  width: 50%; height: 50%;
 }
 
-.form-check {
-  padding-top: 2%;
+
+
+input[type="radio"] {
+  padding-left: 1%;  padding-right: 1%;
 }
 
 body {
@@ -96,7 +100,7 @@ input[name="fx"]{
 
 #grid {
  position: absolute;
- top: 4%; left: 3%;
+ top: 1%; left: 51%;
 }
 
 #initWarning {
@@ -135,14 +139,35 @@ input[name="fx"]{
 }
 
 input[name="trueVal"] {
-  margin-left: 11%;
-  width: 40%;
+  margin-left: 4%;
+  width: 8%;
   font-weight: bold;
+  position: fixed;
+  left: 15%; bottom: 29%;
 }
 
+label[for="trueVal"] {
+  position:fixed;
+  left: 10%; bottom: 28%;
+}
+
+
 input[name="errRel"] {
-  margin-left: 11%;
-  width: 33%;
+  margin-left: 4%;
+  width: 6%;
   font-weight: bold;
   background-color: rgb(211, 168, 112);
+  position: fixed;
+  left: 15%; bottom: 20%;
 }
+
+label[name="errRel1"] {
+  position:fixed;
+  left: 10%; bottom: 19%;
+}
+
+label[name="errRel2"] {
+  position:fixed;
+  left: 26%; bottom: 20%;
+}
+
