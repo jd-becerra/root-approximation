@@ -42,7 +42,12 @@ export class Calculator {
 
   roundPercentage(floatVal) {
     let floatStr = floatVal.toString();
-    let extraDecimals = (floatStr[floatStr.indexOf('.')+5] == 0) ? 2 : 3;
+    let pointIndex = floatStr.indexOf('.');
+    let extraDecimals = (floatStr[pointIndex+5] == 0) ? 2 : 3;
+    if (floatStr[pointIndex + 1] == '0') {
+      for(let i = pointIndex; i < floatStr.length; i++)
+        {if(floatStr[i] == '0') {extraDecimals++;}}
+    }
     let floatStrFixed = floatStr.slice(0, floatStr.indexOf('.') + extraDecimals);
     return +(floatStrFixed); 
   }
