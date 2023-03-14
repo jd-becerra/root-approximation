@@ -27,6 +27,7 @@ export class Calculator {
     let op2 = (((x-x0)*(x-x2)) / ((x1-x0)*(x1-x2))) * fx1;
     let op3 = (((x-x0)*(x-x1)) / ((x2-x0)*(x2-x1))) * fx2;
     let fx = op1 + op2 + op3;
+    console.log(fx);
     if (fx==0) return 0;
     return (Number.isInteger(fx)) ? fx : this.roundFloat(fx, this.countDecimals(fx1)+1);
   }
@@ -56,13 +57,19 @@ export class Calculator {
     extraDecimals = (extraDecimals === 0) ?  3 : extraDecimals;
     extraDecimals = (extraDecimals == 1) ? 3 : extraDecimals;
     let floatStr = floatVal.toString();
+    let pointIndex = floatStr.indexOf('.');
+    if (floatStr[pointIndex + 1] == '0') {
+      for(let i = pointIndex; i < floatStr.length; i++)
+        {if(floatStr[i] == '0') {extraDecimals++;}}
+    }
     let floatStrFixed = floatStr.slice(0, floatStr.indexOf('.') + extraDecimals);
     return +(floatStrFixed);
   }
 
   countDecimals(floatVal) {
     if(floatVal == 0 || Math.floor(floatVal.valueOf()) === floatVal.valueOf()) return 0;
-    let decimals = floatVal.toString().split(".")[1].length || 0;
+    let floatStr = floatVal.toString();
+    let decimals = floatStr.split(".")[1].length || 0;
     return (decimals != 0) ? decimals : 2;
   }
 }
