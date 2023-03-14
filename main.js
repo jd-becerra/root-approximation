@@ -77,11 +77,7 @@ function drawPoints(x0, y0, x1, y1, x2, y2, x, y, hasX2) {
   ggbApplet.evalCommand(`ZoomIn(-${minX+scaleFactorX}, -${minY+scaleFactorY}, ${maxX+scaleFactorX}, ${maxY+scaleFactorY})`);
   ggbApplet.evalCommand(`P0=(${x0},${y0})`);
   ggbApplet.evalCommand(`P1=(${x1},${y1})`);
-  //ggbApplet.evalCommand('s1 = Segment(P0,P1)');
-  //ggbApplet.setLabelVisible('s1', false); 
   ggbApplet.evalCommand(`P=(${x},${y})`);
-  //ggbApplet.evalCommand('s2 = Segment(P,P1)');
-  //ggbApplet.setLabelVisible('s2', false); 
   let points = [[x, 'P'],[x0, 'P0'],[x1, 'P1'] ];
   if(!hasX2){
     let sortedPoints = points.sort(function(a,b) { return a[0]-b[0]});
@@ -91,8 +87,6 @@ function drawPoints(x0, y0, x1, y1, x2, y2, x, y, hasX2) {
     ggbApplet.setLabelVisible('s1', false);
   } else {
     ggbApplet.evalCommand(`P2=(${x2},${y2})`); 
-    //ggbApplet.evalCommand('s3 = Segment(P2,P)');
-    //ggbApplet.setLabelVisible('s3', false); 
     points.push([x2, 'P2']);
     let sortedPoints = points.sort(function(a,b) { return a[0]-b[0]});
     ggbApplet.evalCommand(`s0 = Segment(${sortedPoints[0][1]}, ${sortedPoints[1][1]})`);
