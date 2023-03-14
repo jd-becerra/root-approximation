@@ -4,30 +4,29 @@ let calculator = new Calculator();
 
 document.getElementById("initWarning").animation = "dropAndFade 30s ease forwards";
 
-  var parameters = {
-    "id":"ggbApplet",
-    "appName":"classic",
-    "width":750,
-    "height":745,
-    "showToolBar":false,
-    "borderColor":null,
-    "showMenuBar":false,
-    "allowStyleBar":false,
-    "showAlgebraInput":false,
-    "enableLabelDrags":false,
-    "enableShiftDragZoom":true,
-    "capturingThreshold":null,
-    "showToolBarHelp":false,
-    "errorDialogsActive":false,
-    "showTutorialLink":false,
-    "showLogging":false,
-    "useBrowserForJS":false,
-    "enableUndoRedo":false,
-    "filename": "./grid.ggb"
-  }
-  let applet = new GGBApplet(parameters, '5.0', 'applet_container');
-  window.onload = function() { applet.inject('grid'); } 
-  
+var parameters = {
+  "id":"ggbApplet",
+  "appName":"classic",
+  "width":750,
+  "height":745,
+  "showToolBar":false,
+  "borderColor":null,
+  "showMenuBar":false,
+  "allowStyleBar":false,
+  "showAlgebraInput":false,
+  "enableLabelDrags":false,
+  "enableShiftDragZoom":true,
+  "capturingThreshold":null,
+  "showToolBarHelp":false,
+  "errorDialogsActive":false,
+  "showTutorialLink":false,
+  "showLogging":false,
+  "useBrowserForJS":false,
+  "enableUndoRedo":false,
+  "filename": "./grid.ggb"
+}
+let applet = new GGBApplet(parameters, '5.0', 'applet_container');
+window.onload = function() { applet.inject('grid'); } 
 
 document.body.addEventListener('mouseup', function(e) {
   document.getElementById("initWarning").style.display = "none";
@@ -78,15 +77,30 @@ function drawPoints(x0, y0, x1, y1, x2, y2, x, y, hasX2) {
   ggbApplet.evalCommand(`ZoomIn(-${minX+scaleFactorX}, -${minY+scaleFactorY}, ${maxX+scaleFactorX}, ${maxY+scaleFactorY})`);
   ggbApplet.evalCommand(`P0=(${x0},${y0})`);
   ggbApplet.evalCommand(`P1=(${x1},${y1})`);
-  ggbApplet.evalCommand('s1 = Segment(P0,P1)');
-  ggbApplet.setLabelVisible('s1', false); 
+  //ggbApplet.evalCommand('s1 = Segment(P0,P1)');
+  //ggbApplet.setLabelVisible('s1', false); 
   ggbApplet.evalCommand(`P=(${x},${y})`);
-  ggbApplet.evalCommand('s2 = Segment(P,P1)');
-  ggbApplet.setLabelVisible('s2', false); 
-  if(hasX2){ 
+  //ggbApplet.evalCommand('s2 = Segment(P,P1)');
+  //ggbApplet.setLabelVisible('s2', false); 
+  let points = [[x, 'P'],[x0, 'P0'],[x1, 'P1'] ];
+  if(!hasX2){
+    let sortedPoints = points.sort(function(a,b) { return a[0]-b[0]});
+    ggbApplet.evalCommand(`s0 = Segment(${sortedPoints[0][1]}, ${sortedPoints[1][1]})`);
+    ggbApplet.setLabelVisible('s0', false);
+    ggbApplet.evalCommand(`s1 = Segment(${sortedPoints[1][1]}, ${sortedPoints[2][1]})`);
+    ggbApplet.setLabelVisible('s1', false);
+  } else {
     ggbApplet.evalCommand(`P2=(${x2},${y2})`); 
-    ggbApplet.evalCommand('s3 = Segment(P2,P)');
-    ggbApplet.setLabelVisible('s3', false); 
+    //ggbApplet.evalCommand('s3 = Segment(P2,P)');
+    //ggbApplet.setLabelVisible('s3', false); 
+    points.push([x2, 'P2']);
+    let sortedPoints = points.sort(function(a,b) { return a[0]-b[0]});
+    ggbApplet.evalCommand(`s0 = Segment(${sortedPoints[0][1]}, ${sortedPoints[1][1]})`);
+    ggbApplet.setLabelVisible('s0', false); 
+    ggbApplet.evalCommand(`s1 = Segment(${sortedPoints[1][1]}, ${sortedPoints[2][1]})`);
+    ggbApplet.setLabelVisible('s1', false);
+    ggbApplet.evalCommand(`s2 = Segment(${sortedPoints[2][1]}, ${sortedPoints[3][1]})`);
+    ggbApplet.setLabelVisible('s2', false); 
   }
   ggbApplet.evalCommand('SetColor(P, Red)');
   ggbApplet.evalCommand('SetCaption(P, "Interpolación")');
