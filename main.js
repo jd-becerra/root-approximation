@@ -157,7 +157,7 @@ document.getElementById("resultLagrange1").addEventListener('click', function(e)
   }
   let res = calculator.lagrange1stInterpolation(+x0L1,+fx0L1,+x1L1,+fx1L1,+xL1);
   document.getElementById("fxL1").value = res;
-  drawPoints(+x0L1,+fx0L1,+x1L1,+fx1L1,+xL1,0,0, +res, false);
+  drawPoints(+x0L1,+fx0L1,+x1L1,+fx1L1,0,0,xL1, +res, false);
   relativeError(res);
 });
 
