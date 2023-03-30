@@ -8,7 +8,7 @@ body {
 
 .header {
   color: red;
-  margin-bottom: -2%;
+  margin-bottom: -6%;
   text-align: center;
 }
 
@@ -28,8 +28,13 @@ body {
 }
 
 .changeButton {
-  width: 300%;
-  padding: 70%;
+  width: 100%;
+  padding-left: 20%; padding-right: 20%;
+  padding-top: 35%; padding-bottom: 35%;
+}
+
+#selectorTable {
+  width: 250%;
 }
 
 #greeting {
