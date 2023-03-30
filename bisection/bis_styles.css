@@ -1,3 +1,16 @@
+#Bisection {
+  position: static;
+  background: lightblue;
+  width: 98%; height: 97%;
+  position: fixed;
+  left: 1%;
+  text-align: center;
+}
+
+#menuButton {
+  position: fixed;
+}
+
 #column1 {
   background-color: gray; 
   width: 50%; 
@@ -11,9 +24,8 @@
 }
 
 #bisectionForm {
-  position: absolute;
-  margin-left: 45%;
-  margin-top: 2%;
+  position: fixed;
+  margin-left: 35%;
 }
 
 #initWarning {

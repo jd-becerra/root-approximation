@@ -10,52 +10,50 @@
         <title>Método de bisección</title>
     </head>
     <body>
-      <div id="returnMenu">
-        <button onclick="window.location.href = '../index.html';">Regresar al menú </button>
-      </div>
-      <div id="bisection" class="method"> 
+      <div id="Bisection"> 
+        <div id="menuButton">
+          <button onclick="window.location.href = '../index.html';">Regresar al menú </button>
+        </div>
         <h4> Método de Bisección </h4>
         <div id="bisectionForm">
-          <table name="varTableL" id="variablesTable">
-            <tr>
-              <td id="xl">
+              <div id="xl">
                 <label for="xl">Xl : </label>
                 <input type="number" id="xl" name="Xl" value="0" class="var" step="any">
-              </td>
-                <td id="xu">
-                    <label for="xu">Xu : </label>
-                    <input type="number" id="xu" name="xu" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <select name="criterion" id="criterion">
-                    <option value = "0">Por criterio de paro</option>
-                    <option value = "1">Número de Iteraciones</option>
-                    <option value = "2">Aproximar a cero</option>
-                  </select>
-                </td>
-                <td>
-                  <label for="option">Opción : </label>
-                  <input type="number" id="option" name="option" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <table>
-                    <tr>
-                      <td id="column1">x</td>
-                      <td id="column2">f(x)</td>
-                    </tr>
-                  </table>
-                </td>
-                <td>
-                  <label for="fxL">Aprox(x) : </label>
-                  <input type="text" id="fxL" name="fx"  class="var" readonly>
-                  <label for="fxL">aprox</label>
-                </td>
-              </tr>
-            </table>
+              </div>
+              <div id="xu">
+                  <label for="xu">Xu : </label>
+                  <input type="number" id="xu" name="xu" value="0" class="var" step="any">
+              </div>
+              <div id="function">
+                <label>f(x):</label>
+                <div id="functionInputs">
+                  //AQUI VA LA FUNCION DE X
+                </div>
+              </div>
+              <div>
+                <label for="criteria">Criterio de paro: </label>
+                <select name="criteria" id="criteria">
+                  <option value = "0">Criterio de paro dado</option>
+                  <option value = "1">Número de Iteraciones</option>
+                  <option value = "2">Aproximar a cero</option>
+                </select>
+              </div>
+              <!--<td> //ESTO NO SE PORQUE ESTA AQUI
+                <label for="option">Opción : </label>
+                <input type="number" id="option" name="option" value="0" class="var" step="any">
+              </td>-->
+  
+              <!--<table>  //HAY QUE ESCONDER ESTO DE MIENTRAS
+                  <tr>
+                    <td id="column1">x</td>
+                    <td id="column2">f(x)</td>
+                  </tr>
+                </table>-->
+              <div>
+                <label for="fxL">Raíz aproximada: </label>
+                <input type="text" id="fxL" name="fx"  class="var" readonly>
+                <label for="fxL">aprox</label>
+              </div>
             <button type="button" value="Submit" class="result" id="resultBisec">Calcular f(x)</button>
             <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
           </div>
