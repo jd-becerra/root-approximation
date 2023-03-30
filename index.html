@@ -18,16 +18,16 @@
     <div class="Calculator">
       <h3 class="header">Método de de solución de ecuaciones no lineales</h3>
       <div class="methods">  
-        <div id="linear" class="method"> 
+        <div id="bisection" class="method"> 
           <h4> Método de Biseccion </h4>
-          <div id="linearForm">
+          <div id="bisectionForm">
             <table name="varTableL" id="variablesTable">
       	      <tr>
-	              <td>
+	              <td id="xl">
 		              <label for="xl">Xl : </label>
 	                <input type="number" id="xl" name="Xl" value="0" class="var" step="any">
                 </td>
-		            <td>
+		            <td id="xu">
 		                <label for="xu">Xu : </label>
 		                <input type="number" id="xu" name="xu" value="0" class="var" step="any">
 	              </td>
@@ -35,9 +35,9 @@
 	            <tr>
                 <td>
                   <select name="Criterio" id="criterio">
-                    <option value = "0">Selecciona uno</option>
+                    <option value = "0">Por criterio de paro</option>
                     <option value = "1">Numero de Iteraciones</option>
-                    <option value = "2">Por criterio de paro</option>
+                    <option value = "2">Aproximar a cero</option>
                   </select>
 		            </td>
 		            <td>
@@ -49,8 +49,8 @@
 		            <td>
                   <table>
                     <tr>
-                      <td style="background-color: gray; width: 50%; border-right: 1px solid black; color: aliceblue;">Columna 1</td>
-                      <td style="background-color: lightgray; width: 50%;color: black;">Columna 2</td>
+                      <td id="column1">x</td>
+                      <td id="column2">f(x)</td>
                     </tr>
                   </table>
 	              </td>
