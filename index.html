@@ -1,273 +1,29 @@
 <!DOCTYPE html>
-    <html lang="es">
+  <html lang="es">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Método de de solución de ecuaciones no lineales</title>
-        <!-- OWN CSS FILES-->
-        <link rel="stylesheet" href="styles.css"  type="text/css" />
-        <!-- END OWN CSS FILES-->
-	<script type="module" src="main.js"></script>
-  <script type='module'>
-    function points() { ggbApplet.evalCommand("A=(2,2)");}
- </script>
-  <script type="text/javascript" src="https://cdn.geogebra.org/apps/deployggb.js"></script>
-  </head>
-  <body>
-    <div id="calcBackground">
-    <div class="Calculator">
-      <h3 class="header">Método de de solución de ecuaciones no lineales</h3>
-      <div class="methods">  
-        <div id="bisection" class="method"> 
-          <h4> Método de Biseccion </h4>
-          <div id="bisectionForm">
-            <table name="varTableL" id="variablesTable">
-      	      <tr>
-	              <td id="xl">
-		              <label for="xl">Xl : </label>
-	                <input type="number" id="xl" name="Xl" value="0" class="var" step="any">
-                </td>
-		            <td id="xu">
-		                <label for="xu">Xu : </label>
-		                <input type="number" id="xu" name="xu" value="0" class="var" step="any">
-	              </td>
-	            </tr>
-	            <tr>
-                <td>
-                  <select name="Criterio" id="criterio">
-                    <option value = "0">Por criterio de paro</option>
-                    <option value = "1">Numero de Iteraciones</option>
-                    <option value = "2">Aproximar a cero</option>
-                  </select>
-		            </td>
-		            <td>
-		              <label for="option">Opcion : </label>
-                  <input type="number" id="option" name="option" value="0" class="var" step="any">
- 	              </td>
-	            </tr>
-	            <tr>
-		            <td>
-                  <table>
-                    <tr>
-                      <td id="column1">x</td>
-                      <td id="column2">f(x)</td>
-                    </tr>
-                  </table>
-	              </td>
-	              <td>
-                  <label for="fxL">Aprox(x) : </label>
-                  <input type="text" id="fxL" name="fx"  class="var" readonly>
-                  <label for="fxL">aprox</label>
-		            </td>
-	            </tr>
-	          </table>
-	          <button type="button" value="Submit" class="result" id="resultBisecc">Calcular f(x)</button>
-  	      </div>
-        </div>
-        <div id="cuadratic" class="method" style="display: none">
-          <h4> Método de Interpolación Cuadrática </h4>
-          <div id="cuadraticForm">
-            <table class="varTableC" id="variablesTable">
-              <tr>
-                <td>
-                  <label for="x0C">X0 : </label>
-                  <input type="number" id="x0C" name="x0" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fx0C">f(X0) : </label>
-                  <input type="number" id="fx0C" name="fx0" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="x1C">X1 : </label>
-                  <input type="number" id="x1C" name="x1" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fx1C">f(X1) : </label>
-                  <input type="number" id="fx1C" name="fx1" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="x2C">X2 : </label>
-                  <input type="number" id="x2C" name="x2" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fx2C">f(X2) : </label>
-                  <input type="number" id="fx2C" name="fx2" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="xC">X : </label>
-                  <input type="number" id="xC" name="x" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fxC">f(X) : </label>
-                  <input type="text" id="fxC" name="fx"  class="var" readonly>
-                  <label for="fxC">aproximado</label>
-                </td>
-              </tr>
-            </table>
-            <button type="button" value="Submit" class="result" id="resultCuadratic">Calcular f(x)</button>
-          </div>
-        </div>
-        <div id="lagrange1" class="method" style="display: none">
-          <h4> Método de Interpolación Lagrange de Primer Orden </h4>
-          <div id="lagrange1Form">
-            <table name="varTableL1" id="variablesTable">
-      	      <tr>
-	              <td>
-		              <label for="x0L1">X0 : </label>
-	                <input type="number" id="x0L1" name="x0" value="0" class="var" step="any">
-                </td>
-		            <td>
-		                <label for="fx0L1">f(X0) : </label>
-		                <input type="number" id="fx0L1" name="fx0" value="0" class="var" step="any">
-	              </td>
-	            </tr>
-	            <tr>
-                <td>
-	                <label for="x1L1">X1 : </label>
-                  <input type="number" id="x1L1" name="x1" value="0" class="var" step="any">
-		            </td>
-		            <td>
-		              <label for="fx1L1">f(X1) : </label>
-                  <input type="number" id="fx1L1" name="fx1" value="0" class="var" step="any">
- 	              </td>
-	            </tr>
-	            <tr>
-		            <td>
-		              <label for="xL1">X : </label>
-                  <input type="number" id="xL1" name="x" value="0" class="var" step="any">
-	              </td>
-	              <td>
-                  <label for="fxL1">f(X) : </label>
-                  <input type="text" id="fxL1" name="fx"  class="var" readonly>
-                  <label for="fxL1">aproximado</label>
-		            </td>
-	            </tr>
-	          </table>
-	          <button type="button" value="Submit" class="result" id="resultLagrange1">Calcular f(x)</button>
-  	      </div>
-        </div>
-        <div id="lagrange2" class="method" style="display: none">
-          <h4> Método de Interpolación Lagrange de Segundo Orden </h4>
-          <div id="lagrange2Form">
-            <table class="varTableL2" id="variablesTable">
-              <tr>
-                <td>
-                  <label for="x0L2">X0 : </label>
-                  <input type="number" id="x0L2" name="x0" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fx0L2">f(X0) : </label>
-                  <input type="number" id="fx0L2" name="fx0" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="x1L2">X1 : </label>
-                  <input type="number" id="x1L2" name="x1" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fx1L2">f(X1) : </label>
-                  <input type="number" id="fx1L2" name="fx1" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="x2L2">X2 : </label>
-                  <input type="number" id="x2L2" name="x2" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fx2L2">f(X2) : </label>
-                  <input type="number" id="fx2L2" name="fx2" value="0" class="var" step="any">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="xL2">X : </label>
-                  <input type="number" id="xL2" name="x" value="0" class="var" step="any">
-                </td>
-                <td>
-                  <label for="fxL2">f(X) : </label>
-                  <input type="text" id="fxL2" name="fx"  class="var" readonly>
-                  <label for="fxL2">aproximado</label>
-                </td>
-              </tr>
-            </table>
-            <button type="button" value="Submit" class="result" id="resultLagrange2">Calcular f(x)</button>
-          </div>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Métodos de solución de ecuaciones no lineales</title>
+      <!-- OWN CSS FILES-->
+      <link rel="stylesheet" href="./styles.css"  type="text/css" />
+      <!-- END OWN CSS FILES-->
+      <script type="module" src="./main.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="https://cdn.geogebra.org/apps/deployggb.js"></script> <!--POR SI NECESITAMOS GEOGEBRA-->
+    </head>
+    <body>
+      <div class="Calculator">
+        <h3 class="header">Métodos de solución de ecuaciones no lineales</h3>
+        <div class="methodChanger">    
+          <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">Método de Bisección</button>
         </div>
       </div>
-      <div id="calculateError">
-        <table id="relativeError">
-          <tr>
-            <td>
-              <label for="trueVal">Valor<br> verdadero de X : </label>
-              <input type="number" id="trueVal" name="trueVal" value="0" class="varErr" step="any">
-            </td>
-          </tr>
-          <tr>
-            <td name="errRelDiv">
-              <label for="errRel" name="errRel1">Error<br> Relativo de X : </label>
-              <input type="text" id="errRel" name="errRel" class="varErr" readonly>
-              <label for="errRel" name="errRel2"> % </label>
-            </td>
-          </tr>
-        </table>
-        <button type="button" value="Submit" class="errorRes" id="errorRes">Calcular Error Relativo</button>
+      <div>
+        <dialog open class="greeting" id="greeting">
+          Bienvenido a la calculadora de<br>
+          Métodos de Ecuaciones no lineales<br><br>
+          Selecciona un método para continuar
+        </dialog>
       </div>
-      <div class="resetButton">
-        <button type="button" value="Resetear" onclick="ggbApplet.reset();" class="reset" id="reset">Resetear Valores</button>
-      </div>
-      <div class="methodChanger">    
-        <table>
-          <tr>
-            <td>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="methodSelector" id="linearM" checked="checked" value="linear"">
-                <label class="form-check-label" for="flexRadioDefault1"> Método<br> Biseccion </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="methodSelector" id="cuadraticM" value="cuadratic">
-                <label class="form-check-label" for="flexRadioDefault1"> Método<br> de Newton</label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="methodSelector" id="lagrange1M" value="lagrange1">
-                <label class="form-check-label" for="flexRadioDefault1"> Método <br> de la secante </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="methodSelector" id="lagrange2M" value="lagrange2">
-                <label class="form-check-label" for="flexRadioDefault1"> Método de<br> sustitución sucesiva </label>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="warnings">
-    <dialog open class="initWarning" id="initWarning">
-      Antes de llenar los campos, asegúrate de: <br>
-      - Usar SÓLO números.<br>
-      - No dejar campos vacíos.<br>
-      - No repetir las "x".
-    </dialog>
-    <dialog open class="errorWarning" id="errorWarning">
-      ERROR: Asegúrate de: <br>
-      - Usar SÓLO números.<br>
-      - No dejar campos vacíos.<br>
-      - No repetir las "x".
-    </dialog>
-  </div>>
-  </body>
-</html>
+    </body>
+  </html>

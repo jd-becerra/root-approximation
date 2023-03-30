@@ -1,0 +1,45 @@
+#column1 {
+  background-color: gray; 
+  width: 50%; 
+  border-right: 1px solid black; 
+  color: aliceblue;
+}
+
+#column2 {
+  background-color: lightgray;
+  width: 50%;color: black;
+}
+
+#bisectionForm {
+  position: absolute;
+  margin-left: 45%;
+  margin-top: 2%;
+}
+
+#initWarning {
+  z-index: 999;
+  display: block;
+  color: white;
+  font-weight: bold;
+  background-color: green;
+  position: fixed; top: 7%;
+  animation: dropAndFade 30s ease forwards;
+}
+
+#errorWarning {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  position: fixed;top: 12%;
+  animation: drop 0.7s ease forwards;
+  display: none;
+  animation: dropAndFade 30s ease forwards;
+}
+
+@keyframes dropAndFade{
+  0%{ display: block; }
+  2%{ transform: translateY(30%)}
+  5%{ transform: translateY(10%);  }
+  50%{opacity: 1;}
+  100%{transform: translateY(10%); opacity: 0;}
+}

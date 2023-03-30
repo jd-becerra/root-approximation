@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+  <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- OWN CSS FILES-->
+        <link rel="stylesheet" href="./bis_styles.css"  type="text/css" />
+        <!-- END OWN CSS FILES-->
+        <script type="text/javascript" src="./bisection.js"></script>
+        <title>Método de bisección</title>
+    </head>
+    <body>
+      <div id="returnMenu">
+        <button onclick="window.location.href = '../index.html';">Regresar al menú </button>
+      </div>
+      <div id="bisection" class="method"> 
+        <h4> Método de Bisección </h4>
+        <div id="bisectionForm">
+          <table name="varTableL" id="variablesTable">
+            <tr>
+              <td id="xl">
+                <label for="xl">Xl : </label>
+                <input type="number" id="xl" name="Xl" value="0" class="var" step="any">
+              </td>
+                <td id="xu">
+                    <label for="xu">Xu : </label>
+                    <input type="number" id="xu" name="xu" value="0" class="var" step="any">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <select name="criteria" id="criteria">
+                    <option value = "0">Por criterio de paro</option>
+                    <option value = "1">Número de Iteraciones</option>
+                    <option value = "2">Aproximar a cero</option>
+                  </select>
+                </td>
+                <td>
+                  <label for="option">Opción : </label>
+                  <input type="number" id="option" name="option" value="0" class="var" step="any">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table>
+                    <tr>
+                      <td id="column1">x</td>
+                      <td id="column2">f(x)</td>
+                    </tr>
+                  </table>
+                </td>
+                <td>
+                  <label for="fxL">Aprox(x) : </label>
+                  <input type="text" id="fxL" name="fx"  class="var" readonly>
+                  <label for="fxL">aprox</label>
+                </td>
+              </tr>
+            </table>
+            <button type="button" value="Submit" class="result" id="resultBisec">Calcular f(x)</button>
+            <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
+          </div>
+      </div>
+      <div class="warnings">
+        <dialog open class="initWarning" id="initWarning">
+          Antes de llenar los campos, asegúrate de: <br>
+          - Usar SÓLO números.<br>
+          - No dejar campos vacíos.<br>
+          - No repetir las "x".
+        </dialog>
+        <dialog open class="errorWarning" id="errorWarning">
+          ERROR: Asegúrate de: <br>
+          - Usar SÓLO números.<br>
+          - No dejar campos vacíos.<br>
+          - No repetir las "x".
+        </dialog>
+      </div>
+    </body>
+  </html>

@@ -1,39 +1,19 @@
+label {
+  font-family: cursive;
+}
+
+body {
+  overflow: hidden;
+}
+
 .header {
   color: red;
   margin-bottom: -2%;
-  margin-left: 7%;
-}
-
-#column1 {
-  background-color: gray; 
-  width: 50%; 
-  border-right: 1px solid black; 
-  color: aliceblue;
-}
-
-#column2 {
-  background-color: lightgray;
-  width: 50%;color: black;
-}
-
-#bisectionForm {
-  position: absolute;
-  margin-left: 45%;
-  margin-top: 2%;
-}
-
-.methodChanger {
   text-align: center;
-  position: fixed;
-  top: 85%; left: 8%;
 }
-
 
 .Calculator {
   position: static;
-}
-
-#calcBackground {
   background: lightblue;
   width: 98%; height: 97%;
   position: fixed;
@@ -41,25 +21,26 @@
   text-align: center;
 }
 
-#initWarning {
+.methodChanger {
+  text-align: center;
+  position: fixed;
+  top: 15%; left: 2%;
+}
+
+.changeButton {
+  width: 300%;
+  padding: 70%;
+}
+
+#greeting {
   z-index: 999;
+  text-align: center;
   display: block;
   color: white;
   font-weight: bold;
   background-color: green;
   position: fixed; top: 7%;
   animation: dropAndFade 30s ease forwards;
-}
-
-.errorWarning {
-  color: white;
-  font-weight: bold;
-  background-color: red;
-  position: fixed;top: 12%;
-  animation: drop 0.7s ease forwards;
-  display: none;
-  animation: dropAndFade 30s ease forwards;
-
 }
 
 @keyframes dropAndFade{
@@ -69,129 +50,3 @@
   50%{opacity: 1;}
   100%{transform: translateY(10%); opacity: 0;}
 }
-
-
-.reset {
-  position: absolute;
-  top: 54%; right: 25%;
-  padding: 2%;
-}
-
-#calculateError {
-  display: none;
-}
-
-.result {
-  position: absolute;
-  bottom: -170%; left: -20%;
-  padding: 5%; 
-}
-
-label {
-  font-family: cursive;
-}
-
-body {
-  overflow: hidden;
-}
-
-
-/*
-
-
-.gridBackground {
-  background: #111;
-  opacity: 0.6;
-  width: 95%; height: 97%;
-  position: absolute;
-  left: 52%;
-}
-
-
-input[type="radio"] {
-  padding-left: 1%;  padding-right: 1%;
-}
-
-
-#variablesTable {
-  padding-left: 10%;
-  text-align: left;
-  position: absolute;
-  top: 12%; left: 6%;
-}
-
-.var {
-  white-space: nowrap;
-  margin-top: 10%; margin-left: 10%;
-  width: 40%;
-}
-
-#relativeError {
-  position: absolute;
-  top: 62%; left: 5%;
-}
-
-.varErr {
-  margin-top: 10%;
-}
-
-input[name="x"]{
-  margin-left: 13%;
-}
-
-input[name="fx"]{
-  margin-left: 13%;
-  width: 33%;
-  font-weight: bold;
-  background-color: rgb(182, 253, 182);
-}
-
-.errorRel {
-  position: absolute;
-  top: 70%; right: 10%;
-  padding: 2%;
-}
-
-#grid {
- position: absolute;
- top: 1%; left: 51%;
-}
-
-.errorRes{
-  position: absolute; top: 70%; right: 11%;
-  padding: 2%;
-}
-
-input[name="trueVal"] {
-  margin-left: 4%;
-  width: 8%;
-  font-weight: bold;
-  position: fixed;
-  left: 15%; bottom: 29%;
-}
-
-label[for="trueVal"] {
-  position:fixed;
-  left: 10%; bottom: 28%;
-}
-
-
-input[name="errRel"] {
-  margin-left: 4%;
-  width: 6%;
-  font-weight: bold;
-  background-color: rgb(211, 168, 112);
-  position: fixed;
-  left: 15%; bottom: 20%;
-}
-
-label[name="errRel1"] {
-  position:fixed;
-  left: 10%; bottom: 19%;
-}
-
-label[name="errRel2"] {
-  position:fixed;
-  left: 26%; bottom: 20%;
-}
-*/
