@@ -1,9 +1,11 @@
 /** PÁGINA PRINCIPAL DE LA CALCULADORA (MENÚ) */
 
+
 //Eliminar "greeting" cuando el usuario de click a la página
 document.body.addEventListener('mouseup', function(e) {
   document.getElementById("greeting").style.display = "none";
 });
+
 
 /** EN CASO DE NECESITAR GEOGEBRA
 var parameters = {

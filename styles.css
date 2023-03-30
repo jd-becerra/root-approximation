@@ -21,26 +21,37 @@ body {
   text-align: center;
 }
 
-.methodChanger {
-  position: relative;
-  text-align: center;
-  bottom: 50%; right: 5%;
-}
-
-.changeButton {
-  border: none;
-  background-color: rgb(219, 250, 240);
-  width: 70%;
-  height: 100%;
-}
-
 #selectorTable {
+  top: 15%; right: 0%;
   position: fixed;
   width: 100%;
-  height: 200%;
+  height: 159;
 }
 
+td {
+  text-align: justify;
+  background-color: rgb(219, 250, 240);
+  display: inline-block;
+  width: 23vw;height: 18vw;
+}
+
+.changeButton{
+  border: none;
+  text-decoration: none;
+  width: 100%;height: 100%;
+}
+
+.methodDescription {
+  display: none;
+}
+
+.changeButton:hover .methodDescription{
+  display: block;
+}
+
+
 #greeting {
+  opacity: 0.5;
   z-index: 999;
   text-align: center;
   display: block;
@@ -48,13 +59,13 @@ body {
   font-weight: bold;
   background-color: green;
   position: fixed; top: 7%;
-  animation: dropAndFade 30s ease forwards;
+  animation: dropAndFade 10s ease forwards;
 }
 
 @keyframes dropAndFade{
   0%{ display: block; }
-  2%{ transform: translateY(30%)}
-  5%{ transform: translateY(10%);  }
-  50%{opacity: 1;}
+  4%{ transform: translateY(30%)}
+  10%{ transform: translateY(10%);  }
+  50%{opacity: 0.5;}
   100%{transform: translateY(10%); opacity: 0;}
 }
