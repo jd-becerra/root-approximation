@@ -7,10 +7,15 @@
 **Posibles Metodos necesarios**
 
 *Métodos de bisección*
+
 *Método de la falsa posición y método de la falsa posición modificada*
+
 *Método de Newton*
+
 *Método de la secante*
+
 *Método de sustitución sucesiva*
+
 *Método de Bairstow*
 
 #### ¿Por que esto? ####

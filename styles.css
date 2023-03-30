@@ -9,7 +9,7 @@
 
 #calcBackground {
   background: lightblue;
-  width: 48%; height: 97%;
+  width: 98%; height: 97%;
   position: fixed;
   left: 1%;
   text-align: center;
@@ -18,7 +18,7 @@
 .gridBackground {
   background: #111;
   opacity: 0.6;
-  width: 46%; height: 97%;
+  width: 95%; height: 97%;
   position: absolute;
   left: 52%;
 }

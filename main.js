@@ -105,7 +105,8 @@ function drawPoints(x0, y0, x1, y1, x2, y2, x, y, hasX2) {
 
 window.drawPoints=drawPoints;
 
-//Metodo de biseccion
+//Metodo de biseccion//
+//Falta valores para pedir la funcion al usuario//
 document.getElementById("resultBisecc").addEventListener('click', function(e) {
   let xL = document.getElementById('xl').value;
   let xu = document.getElementById('xu').value;
