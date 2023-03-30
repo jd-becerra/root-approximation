@@ -105,19 +105,20 @@ function drawPoints(x0, y0, x1, y1, x2, y2, x, y, hasX2) {
 
 window.drawPoints=drawPoints;
 
-//Linear Interpolation Method
-document.getElementById("resultLinear").addEventListener('click', function(e) {
-  let x0L = document.getElementById('x0L').value;
-  let fx0L = document.getElementById('fx0L').value;
-  let x1L = document.getElementById('x1L').value;
-  let fx1L = document.getElementById('fx1L').value;
-  let xL = document.getElementById('xL').value;
-  let onlyNum = checkOnlyNumbers(x0L,fx0L, x1L, fx1L,"0", "0", xL, false);
+//Metodo de biseccion
+document.getElementById("resultBisecc").addEventListener('click', function(e) {
+  let xL = document.getElementById('xl').value;
+  let xu = document.getElementById('xu').value;
+  const type = document.querySelector('#criterio');
+  let typevalor = type.value
+  console.log(typevalor);
+  let optionvalue = document.getElementById('option').value;
+  let onlyNum = checkOnlyNumbers(optionvalue, xu, "0", "0", xL, false);
   if (!onlyNum) {
     raiseUserError();
     return;
   }
-  let res = calculator.linearInterpolation(+x0L,+fx0L,+x1L,+fx1L,+xL);
+  let res = calculator.biseccion(+xL, +xu, +typevalor, +optionvalue);
   document.getElementById("fxL").value = res;
   drawPoints(+x0L,+fx0L,+x1L,+fx1L,0, 0, +xL, +res, false);
   relativeError(res);

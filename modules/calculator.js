@@ -1,4 +1,41 @@
 export class Calculator {
+ biseccion(xL, xu, typevalor, optionvalue){
+  let errorrelativo= []
+  let positives = []
+  let negatives = []
+  xr = (xL + xu)/2;
+  valorant = xr;
+  if (typevalor == 1) {
+  for (let index = 1; index >= optionvalue; index++) {
+    xr = (xL + xu)/2;
+    error = (xr - valorant)/xr;
+    errorrelativo.push(error);
+    if (this.determinarSigno(xr) == 1) positives.push(xr);
+    else negatives.push(xr);
+    valorant = xr;
+  }
+} else if (typevalor == 2){
+
+}
+else {
+ return 'Ingresar valor'
+}
+ }
+ determinarSigno(numero) {
+  if (numero > 0) return 1;
+  else return 2;
+}
+  CercanoACero(array) {
+  let valorMasCercano = array[0];
+  for (let i = 1; i < array.length; i++) {
+    if (Math.abs(array[i]) < Math.abs(valorMasCercano)) {
+      valorMasCercano = array[i];
+    }
+  }
+
+  return valorMasCercano;
+}
+ 
   linearInterpolation(x0, fx0, x1, fx1, x) {
     let fx = fx0 + (((fx1 - fx0) / (x1 - x0)) * (x - x0));
     if (fx==0) return 0;
