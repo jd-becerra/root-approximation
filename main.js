@@ -110,16 +110,14 @@ window.drawPoints=drawPoints;
 document.getElementById("resultBisecc").addEventListener('click', function(e) {
   let xL = document.getElementById('xl').value;
   let xu = document.getElementById('xu').value;
+  let x2 = document.getElementById("x'2").value;
+  let x = document.getElementById('X').value;
+  let N_X = document.getElementById('N/X').value;X
   const type = document.querySelector('#criterio');
   let typevalor = type.value
   console.log(typevalor);
   let optionvalue = document.getElementById('option').value;
-  let onlyNum = checkOnlyNumbers(optionvalue, xu, "0", "0", xL, false);
-  if (!onlyNum) {
-    raiseUserError();
-    return;
-  }
-  let res = calculator.biseccion(+xL, +xu, +typevalor, +optionvalue);
+  let res = calculator.biseccion(+xL, +xu, +typevalor, +optionvalue, +x2, +x, +N_X);
   document.getElementById("fxL").value = res;
   drawPoints(+x0L,+fx0L,+x1L,+fx1L,0, 0, +xL, +res, false);
   relativeError(res);

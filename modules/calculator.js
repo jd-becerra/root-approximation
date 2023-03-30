@@ -1,20 +1,24 @@
 export class Calculator {
  //Falta valores para pedir la funcion al usuario que se tranformaran en lo marcado por funcion//
- biseccion(xL, xu, typevalor, optionvalue){
+ biseccion(xL, xu, typevalor, optionvalue, x2, x, N_X){
   let errorrelativo= []
-  xr = (xL + xu)/2;
-  error = (xr - valorant)/xr;
+  let resultado = 0;
+  let xr = (xL + xu)/2;
+  let valorant = xr;
+  let error = (xu - valorant)/xu;
   errorrelativo.push(error);
-  valorant = xr;
-  if (typevalor == 1) {
+  if (typevalor == 0) {
   for (let index = 1; index >= optionvalue; index++) {
     xr = (xL + xu)/2;
     error = (xr - valorant)/xr;
     errorrelativo.push(error);
-    if('funcion'*xr < 'funcion'*xL) xL = xr 
-    else xu = xr
+    if((x2*xr)*(x2*xr) + (x*xr) + N_X < (x2*xL)(x2*xL) + (x*xL)) xL = xr 
+    else xu = xr;
+    valorant = xr;
+    resultado = xr;
   }
-} else if (typevalor == 2){
+  console.log(resultado);
+} else if (typevalor == 1){
   for (let index = 1; error < optionvalue; index++) {
     xr = (xL + xu)/2;
     error = (xr - valorant)/xr;
