@@ -28,16 +28,17 @@ window.onload = () => {
   });
 
   //Tomar valores si se presiona el botón de "resultado"
-  document.getElementById("resultBisec").addEventListener('click', function(e) {
+  document.getElementById('resultBisec').addEventListener('click', function(e) {
     let xL = document.getElementById('xL').value;
     let xU = document.getElementById('xU').value;
     let squareVal = document.getElementById('xSqr').value;
     let linVal = document.getElementById('xLnl').value;
     let independentVal = document.getElementById('indVal').value;
-    //Falta checar que opcion de criterio y como tomar el valor
+    let criteriaOption = document.getElementById('stopMethods').value;
 
+    let calculator = new Bisection();
+    let res = calculator.bisection(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
 
-    
     document.getElementById("root").value = res;
   });
 
@@ -46,8 +47,65 @@ window.onload = () => {
 
 //Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
 class Bisection {
-  bisection(xL, xU, squareVal, linVal, independentVal, criteriaOption){
-    let criteriaOption = document.getElementById('criteria').value; 
+  bisection(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
+    const negMapY = new Map();
+    const posMapY = new Map();
+    negMapY.set(this.functionX(xL,squareVal,linVal,independentVal), xL);
+    posMapY.set(this.functionX(xU,squareVal,linVal,independentVal), xU);
+
+    //Calcular primera X
+    let xR = (xL+xU)/2;
+    let funcXR = this.functionX(xR,squareVal,linVal,independentVal);
+    if (funcXR >= 0) {
+      posMapY.set(funcXR, xR);
+    } else {
+      negMapY.set(funcXR, xR);
+    }
+    let newX = negMapY.get(Math.max(...negMapY.keys()));  //Obtener mayor numero de numeros negativos
+    let prevX = posMapY.get(Math.min(...posMapY.keys())); //Obtener menor numero de numeros positivos
+
+    let criteria = 0;
+
+    if( criteriaOption == 1 ) { let i = 0; }
+    //Iniciar iteraciones
+    do {
+      //Calcular nueva xR
+      let prevXR = xR;
+      xR = (newX + prevX)/2;
+      funcXR = this.functionX(xR,squareVal,linVal,independentVal);
+      if (funcXR >= 0) {
+        posMapY.set(funcXR, xR);
+      } else {
+        negMapY.set(funcXR, xR);
+      }
+      newX = negMapY.get(Math.max(...negMapY.keys()));  //Obtener mayor numero de numeros negativos
+      prevX = posMapY.get(Math.min(...posMapY.keys())); //Obtener menor numero de numeros positivos
+
+      //Utilizar un metodo para evaluar si parar o no
+      if(criteriaOption == 0 || criteriaOption == 2) {
+        criteria = this.relativeError(xR, prevXR);
+      } else if(criteriaOption == 1) {
+        criteria = i;
+        i++;
+      }
+
+    } while(this.evaluateStop(criteria, criteriaOption));
+
+    return xR;
+  }
+
+  evaluateStop(criteria, option) {
+    switch(option) {
+      case 0:
+        return criteria > +(document.getElementById('criteria').value);
+        break;
+      case 1:
+        return criteria > +(document.getElementById('iteration').value);
+        break;
+      case 2:
+        return criteria >= 0.001;
+        break;
+    }
   }
 
   functionX(x, squareVal, linVal, independentVal) {
