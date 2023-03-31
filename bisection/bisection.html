@@ -10,28 +10,36 @@
         <title>Método de bisección</title>
     </head>
     <body>
-      <div id="Bisection"> 
-        <div id="menuButton">
-          <button onclick="window.location.href = '../index.html';">Regresar al menú </button>
+      <div class="head">
+
+        <div class="logo">
+            <a href="">Metodo de Bisección</a>
         </div>
+        <nav class="navbar">
+            <a href="../index.html">Inicio</a>
+            <a href="http://">Método de Newton</a>
+            <a href="http://">Método de la secante</a>
+            <a href="http://">Método de sustitución sucesiva</a>
+            <a href="http://">Método de Bairstow</a>
+            <a href="http://">Agregar</a>
+        </nav>
+    </div>
+    <header class="content header">
+      <div id="Bisection"> 
         <h4> Método de Bisección </h4>
-        <div id="bisectionForm">
+        <div class= "box-container" id="bisectionForm">
           <label for="xL">Límite inferior : </label>
           <input type="number" id="xL" name="xL" value="0" class="var" step="any">
           <label for="xU">Límite superiror : </label>
           <input type="number" id="xU" name="xU" value="0" class="var" step="any">
           <div id="function">
-            <div id="functionInputs">
-              <table>
-                <tr>
+            <div class="box-container" id="functionInputs">
                   <label for="xSqr">f(x):  </label>
                   <input type="number" id="xSqr" name="xSqr" value="0" class="funcVar" step="any">
                   <label for="xSqr"> X&sup2; + </label>
                   <input type="number" id="xLnl" name="xLnl" value="0" class="funcVar" step="any">
                   <label for="xLnl"> X + </label>
                   <input type="number" id="indVal" name="indVal" value="0" class="funcVar" step="any">
-                </tr>
-              </table>
             </div>
           </div>
           <div>
@@ -65,6 +73,21 @@
           <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
         </div>
       </div>
+      </header>
+<section class="content sau">
+    <h2 class="title">¿Como funciona el Metodo de bisección</h2>
+    <p>El método de bisección es un método numérico para encontrar la raíz de una función en un intervalo dado. Es un método iterativo que se basa en el teorema del valor intermedio. El método de bisección se puede utilizar para funciones continuas y diferentes en un intervalo cerrado [a, b] donde la función cambia de signo.
+    <p> El método de bisección funciona de la siguiente manera:</p>
+      
+     <p>1.-Seleccionar un intervalo cerrado [a, b] donde la función cambia de signo.</p> 
+     <p>2.-Calcular el punto medio c del intervalo: c = (a + b)/2</p> 
+     <p>3.-Evaluar la función en el punto medio c: f(c)</p> 
+     <p>4.-Si f(c) es igual a cero, entonces c es la raíz buscada.</p>
+     <p>5.-Si f(c) tiene el mismo signo que f(a), entonces la raíz está en el intervalo [c, b]. En este caso, se redefine el intervalo [a, b] como [c, b] y se repite el proceso desde el paso 2.</p>
+     <p>6.-Si f(c) tiene el mismo signo que f(b), entonces la raíz está en el intervalo [a, c]. En este caso, se redefine el intervalo [a, b] como [a, c] y se repite el proceso desde el paso 2.</p>
+      El método de bisección es un método lento, pero seguro y confiable para encontrar raíces de funciones. Una de las principales desventajas del método de bisección es que puede requerir un gran número de iteraciones para obtener una precisión suficiente.</p>
+        </div>
+    </section>
       <div class="warnings">
         <dialog open class="initWarning" id="initWarning">
           Antes de llenar los campos, asegúrate de: <br>

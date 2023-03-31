@@ -1,115 +1,82 @@
 <!DOCTYPE html>
-  <html lang="es">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Métodos de solución de ecuaciones no lineales</title>
-      <!-- OWN CSS FILES-->
-      <link rel="stylesheet" href="./styles.css"  type="text/css" />
-      <!-- END OWN CSS FILES-->
-      <script type="module" src="./main.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="https://cdn.geogebra.org/apps/deployggb.js"></script> <!--POR SI NECESITAMOS GEOGEBRA-->
-    </head>
-    <body>
-      <div class="Calculator">
-        <h3 class="header">Métodos de solución de ecuaciones no lineales</h3>
-        <div class="methodChanger">   
-          <table id="selectorTable">
-            <tr>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando<br>
-                    con intervalos. Hace iteraciones para dividir<br>
-                    el intervalo hasta aproximarse lo más posible a la raíz<br><br>
-                    <img src="./web_img/bisection.png" alt="Método de Bisección" width="150" height="60"> 
-                  </p>
-                </button>
-              </td>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando con intervalos. <br>
-                    Hace iteraciones para dividir el intervalo hasta<br> 
-                    aproximarse lo más posible a la raíz
-                  </p>
-                </button>
-              </td>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando con intervalos. <br>
-                    Hace iteraciones para dividir el intervalo hasta<br> 
-                    aproximarse lo más posible a la raíz
-                  </p>
-                </button>
-              </td>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando con intervalos. <br>
-                    Hace iteraciones para dividir el intervalo hasta<br> 
-                    aproximarse lo más posible a la raíz
-                  </p>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando con intervalos. <br>
-                    Hace iteraciones para dividir el intervalo hasta<br> 
-                    aproximarse lo más posible a la raíz
-                  </p>
-                </button>
-              </td>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando con intervalos. <br>
-                    Hace iteraciones para dividir el intervalo hasta<br> 
-                    aproximarse lo más posible a la raíz
-                  </p>
-                </button>
-              </td>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando con intervalos. <br>
-                    Hace iteraciones para dividir el intervalo hasta<br> 
-                    aproximarse lo más posible a la raíz
-                  </p>
-                </button>
-              </td>
-              <td>
-                <button class="changeButton" onclick="window.location.href = './bisection/bisection.html';">
-                  <h4>Método de Bisección</h4>
-                  <p class="methodDescription">
-                    Proporciona raíces únicamente reales trabajando con intervalos. <br>
-                    Hace iteraciones para dividir el intervalo hasta<br> 
-                    aproximarse lo más posible a la raíz
-                  </p>
-                </button>
-              </td>
-            </tr>
-          </table> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodos ecuaciones no lineales</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="IMG/Icon Proyect.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    
+    <div class="head">
+
+        <div class="logo">
+            <a href="">Inicio</a>
         </div>
-      </div>
-      <div>
-        <dialog open class="greeting" id="greeting">
-          Bienvenido a la calculadora de<br>
-          Métodos de Ecuaciones no lineales<br><br>
-          Selecciona un método para continuar
-        </dialog>
-      </div>
-    </body>
-  </html>
+        <nav class="navbar">
+            <a href="./bisection/bisection.html">Método de Bisección</a>
+            <a href="http://">Método de Newton</a>
+            <a href="http://">Método de la secante</a>
+            <a href="http://">Método de sustitución sucesiva</a>
+            <a href="http://">Método de Bairstow</a>
+            <a href="http://">Agregar</a>
+        </nav>
+    </div>
+    <header class="content header">
+        <h2 class="titleh">Métodos de solución de ecuaciones no lineales</h2>
+     <!--  Todavia no he investigado esto <div>
+            <dialog open class="greeting" id="greeting">
+                Bienvenido a la calculadora de<br>
+                Métodos de Ecuaciones no lineales<br><br>
+                Selecciona un método para continuar
+        </div>--> 
+    </header>
+<section class="content sau">
+    <h2 class="title">Descripciones de los Metodos</h2>
+    <p>Existen ecuaciones cuya solución, mediante técnicas algebraicas tradicionales,
+        pueden resultar difíciles de obtener, y es cuando podemos utilizar otros métodos para
+        aproximarnos a la solución por eso estan los siguientes metodos que pueden ser usados para su solución.</p>
+        <div class="box-container">
+
+            <div class="box">
+            <i class="fab fa-angular"></i>
+            <a href="./bisection/bisection.html">Biseccion</a>
+            <p> Es un algoritmo de búsqueda de raíces que trabaja dividiendo el intervalo a la mitad y seleccionando el subintervalo que tiene la raíz.</p>
+            </div>
+            
+            <div class="box">
+                <i class="fab fa-adn"></i>
+                <a href="http://">Newton-Raphson</a>
+                <p>Método iterativo que utiliza la derivada de la función para mejorar la precisión de la estimación de la raíz en cada iteración.</p>
+                </div>
+                
+            <div class="box">
+                <i class="fab fa-youtube"></i>
+                <a href="http://">Secante</a>
+                <p>Trata de ir trazando rectas secantes a la curva de la función buscada, y se va comprobando la intersección de estas con el eje x para ver si es la raíz que buscamos.</p>
+                </div>
+            
+                <div class="box">
+                <i class="fab fa-angular"></i>
+                <a href="http://">Bairstow</a>
+                <p>Aproximación del polinomio original mediante un polinomio cuadrático, y luego se utilizan iteraciones para mejorar esta aproximación hasta que se alcance una precisión deseada.</p>
+                </div>
+                    
+            <div class="box">
+                <i class="fab fa-adn"></i>
+                <a href="http://">Sustitucion sucesiva</a>
+                <p>Despejando una variable en términos de las otras y sustituyéndola en otra ecuación, repitiendo el proceso para cada variable.</p>
+                </div>
+                        
+            <div class="box">
+                <i class="fab fa-youtube"></i>
+                <a href="http://">Falsa posición</a>
+                <p>Se basa en la interpolación lineal de la función entre dos puntos del intervalo.</p>
+                </div>
+        </div>
+    </section>
+</body>
+</html>

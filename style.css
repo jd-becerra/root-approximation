@@ -44,6 +44,8 @@ body{
     text-decoration: none;
     text-transform: uppercase;
     font-size: 20px;
+    margin: 0.2rem;
+    border-radius: 1rem;
 }
 
 .navbar a:hover {
