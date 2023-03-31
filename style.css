@@ -11,12 +11,6 @@ body{
   font-family: Arial;
 }
 
-.header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .head{
     display: flex;
     justify-content: space-between;
@@ -51,3 +45,98 @@ body{
     text-transform: uppercase;
     font-size: 20px;
 }
+
+.navbar a:hover {
+    background: #f59696;
+}
+
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+ height: 60vh !important;
+ background: url(IMG/Index.png) no-repeat center;
+ background-attachment: fixed;
+ background-size: cover;
+
+}
+.title {
+    margin-bottom: 40px;
+    font-size: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.titleh {
+    margin-bottom: 40px;
+    font-size: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: aliceblue;
+}
+
+p{
+    margin-bottom: 40px;
+    font-size: 18px;
+}
+
+.content {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.sau {
+    padding: 85px;
+    background: rgb(181, 156, 156);
+    
+}
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.box-container .box {
+    height: 11rem;
+    width: 17rem;
+    background: rgb(248, 198, 198);
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 .3 5rem rgba(123, 76, 76, 0.5);
+    margin: 2rem;
+}
+.box-container .box i{
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border-radius: 50%;
+    color: aliceblue;
+    background: #f28484;
+}
+
+.box-container .box a{
+    font-size: 20px;
+    color: #f28484;
+    text-decoration: none;
+}
+
+#greeting {
+    opacity: 0.5;
+    z-index: 999;
+    text-align: center;
+    display: block;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(222, 122, 122);
+    position:fixed; top: 7%;
+    animation: dropAndFade 10s ease forwards;
+  }
