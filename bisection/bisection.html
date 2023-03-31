@@ -16,47 +16,50 @@
         </div>
         <h4> Método de Bisección </h4>
         <div id="bisectionForm">
-              <div id="xl">
-                <label for="xl">Xl : </label>
-                <input type="number" id="xl" name="Xl" value="0" class="var" step="any">
-              </div>
-              <div id="xu">
-                  <label for="xu">Xu : </label>
-                  <input type="number" id="xu" name="xu" value="0" class="var" step="any">
-              </div>
-              <div id="function">
-                <label>f(x):</label>
-                <div id="functionInputs">
-                  //AQUI VA LA FUNCION DE X
-                </div>
-              </div>
-              <div>
-                <label for="criteria">Criterio de paro: </label>
-                <select name="criteria" id="criteria">
-                  <option value = "0">Criterio de paro dado</option>
-                  <option value = "1">Número de Iteraciones</option>
-                  <option value = "2">Aproximar a cero</option>
-                </select>
-              </div>
-              <!--<td> //ESTO NO SE PORQUE ESTA AQUI
-                <label for="option">Opción : </label>
-                <input type="number" id="option" name="option" value="0" class="var" step="any">
-              </td>-->
-  
-              <!--<table>  //HAY QUE ESCONDER ESTO DE MIENTRAS
-                  <tr>
-                    <td id="column1">x</td>
-                    <td id="column2">f(x)</td>
-                  </tr>
-                </table>-->
-              <div>
-                <label for="fxL">Raíz aproximada: </label>
-                <input type="text" id="fxL" name="fx"  class="var" readonly>
-                <label for="fxL">aprox</label>
-              </div>
-            <button type="button" value="Submit" class="result" id="resultBisec">Calcular f(x)</button>
-            <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
+          <label for="xL">Límite inferior : </label>
+          <input type="number" id="xL" name="xL" value="0" class="var" step="any">
+          <label for="xU">Límite superiror : </label>
+          <input type="number" id="xU" name="xU" value="0" class="var" step="any">
+          <div id="function">
+            <div id="functionInputs">
+              <table>
+                <tr>
+                  <label for="xSqr">f(x):  </label>
+                  <input type="number" id="xSqr" name="xSqr" value="0" class="funcVar" step="any">
+                  <label for="xSqr"> X&sup2; + </label>
+                  <input type="number" id="xLnl" name="xLnl" value="0" class="funcVar" step="any">
+                  <label for="xLnl"> X + </label>
+                  <input type="number" id="indVal" name="indVal" value="0" class="funcVar" step="any">
+                </tr>
+              </table>
+            </div>
           </div>
+          <div>
+            <label for="stopMethods">Criterio de paro: </label>
+            <select name="stopMethods" id="stopMethods">
+              <option value="0">Criterio de paro</option>
+              <option value="1">Número de Iteraciones</option>
+              <option value="2">Aproximar a cero</option>
+            </select>
+          </div>
+          <div id="criteriaMethod">
+            <label for="criteria">Opción : </label>
+            <input type="number" id="criteria" name="criteria" value="0" class="var" step="any">
+          </div>
+          <!--<table>  //HAY QUE ESCONDER ESTO DE MIENTRAS
+              <tr>
+                <td id="column1">x</td>
+                <td id="column2">f(x)</td>
+              </tr>
+            </table>-->
+          <div>
+            <label for="root">Raíz aproximada: </label>
+            <input type="text" id="root" name="root"  class="var" readonly>
+            <label for="root">aprox</label>
+          </div>
+          <button type="button" value="Submit" class="result" id="resultBisec">Calcular f(x)</button>
+          <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
+        </div>
       </div>
       <div class="warnings">
         <dialog open class="initWarning" id="initWarning">

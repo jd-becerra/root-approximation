@@ -10,16 +10,35 @@ window.onload = () => {
     }
   });
 
+  //Mostrar el critero de paro elegido
+  let stopMethods = document.getElementById("stopMethods");
+  stopMethods.value = '0';
+  stopMethods.addEventListener('change', function(e){
+    switch(this.value) {
+      case '0':
+        document.getElementById("criteriaMethod").style.display = "block";
+        break;
+      case '1':
+        document.getElementById("criteriaMethod").style.display = "none";
+        break;
+      case '2':
+        document.getElementById("criteriaMethod").style.display = "none";
+        break;
+    }
+  });
 
+  //Tomar valores si se presiona el botón de "resultado"
   document.getElementById("resultBisec").addEventListener('click', function(e) {
-    let xL = document.getElementById('xl').value;
-    let xu = document.getElementById('xu').value;
-    let N_X = document.getElementById('N/X').value;X
-    const type = document.getElementById('#criterio');
-    let typevalor = type.value
-    console.log(typevalor);
-    let res = Bisection.bisection(+xL, +xu, +typevalor, +optionvalue, +x2, +x, +N_X);
-    document.getElementById("fxL").value = res;
+    let xL = document.getElementById('xL').value;
+    let xU = document.getElementById('xU').value;
+    let squareVal = document.getElementById('xSqr').value;
+    let linVal = document.getElementById('xLnl').value;
+    let independentVal = document.getElementById('indVal').value;
+    //Falta checar que opcion de criterio y como tomar el valor
+
+
+    
+    document.getElementById("root").value = res;
   });
 
 }
@@ -27,32 +46,16 @@ window.onload = () => {
 
 //Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
 class Bisection {
-  bisection(xL, xU, typevalor, optionvalue, x2, x, N_X){
-    let errorrelativo= []
-    let resultado = 0;
-    let xr = (xL + xU)/2;
-    let valorant = xr;
-    let error = (xU - valorant)/xU;
-    errorrelativo.push(error);
-    if (typevalor == 1) {
-      for (let index = 1; index >= optionvalue; index++) {
-        xr = (xL + xU)/2;
-        error = (xr - valorant)/xr;
-        errorrelativo.push(error);
-        if((x2*xr)*(x2*xr) + (x*xr) + N_X < (x2*xL)(x2*xL) + (x*xL)) xL = xr 
-        else xU = xr;
-        valorant = xr;
-        resultado = xr;
-      }
-      console.log(resultado);
-    } else if (typevalor == 0){
-      for (let index = 1; error < optionvalue; index++) {
-        xr = (xL + xU)/2;
-        error = (xr - valorant)/xr;
-        errorrelativo.push(error);
-        if('funcion'*xr < 'funcion'*xL) xL = xr 
-        else xU = xr
-      }
-    }
+  bisection(xL, xU, squareVal, linVal, independentVal, criteriaOption){
+    let criteriaOption = document.getElementById('criteria').value; 
+  }
+
+  functionX(x, squareVal, linVal, independentVal) {
+    return (squareVal*(x*x))+(linVal*x)+independentVal;
+  }
+
+  relativeError(newVal, previousVal) {
+    let error = (((newVal - previousVal)/newVal)*100);
+    return (error >= 0) ? error : (error * -1);
   }
 }
