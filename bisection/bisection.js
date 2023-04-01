@@ -50,8 +50,11 @@ class Bisection {
   bisection(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
     const negMapY = new Map();
     const posMapY = new Map();
-    negMapY.set(this.functionX(xL,squareVal,linVal,independentVal), xL);
-    posMapY.set(this.functionX(xU,squareVal,linVal,independentVal), xU);
+    let fXL = this.functionX(xL,squareVal,linVal,independentVal);
+    let fXU = this.functionX(xU,squareVal,linVal,independentVal);
+
+    if(fXL < 0) { negMapY.set(fXL, xL); posMapY.set(fXU, xU); }
+    else { posMapY.set(fXL, xL); negMapY.set(fXU, xU); }
 
     //Calcular primera X
     let xR = (xL+xU)/2;
