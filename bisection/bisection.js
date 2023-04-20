@@ -20,6 +20,7 @@ window.onload = () => {
         break;
       case '1':
         document.getElementById("criteriaMethod").style.display = "none";
+        document.getElementById("iterationMethod").style.display = "block";
         break;
       case '2':
         document.getElementById("criteriaMethod").style.display = "none";
