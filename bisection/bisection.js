@@ -49,13 +49,15 @@ window.onload = () => {
 
 }
 
-function checkValues(vaules, criteriaOption) {
+function checkValues(values, criteriaOption) {
   for (let val of values) {
     if (isNumberValid(val)) {
       return false;
     }
   }
-
+  if (values[0] == values[1]) {
+    return false; //if xL equal to xU
+  } 
   //TODO: check values of criteria for stopping (in all cases)
 
   return true; //only if all values are valid
