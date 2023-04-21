@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+  <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- OWN CSS FILES-->
+        <link rel="stylesheet" href="./bis_styles.css"  type="text/css" />
+        <!-- END OWN CSS FILES-->
+        <script type="text/javascript" src="./bisection.js"></script>
+        <title>Método de bisección</title>
+    </head>
+    <body>
+      <div class="head">
+
+        <div class="logo">
+            <a href="">Metodo de Bisección</a>
+        </div>
+        <nav class="navbar">
+            <a href="../index.html">Inicio</a>
+            <a href="http://">Método de Newton</a>
+            <a href="http://">Método de la secante</a>
+            <a href="http://">Método de sustitución sucesiva</a>
+            <a href="http://">Método de Bairstow</a>
+            <a href="http://">Agregar</a>
+        </nav>
+    </div>
+    <header class="content header">
+      <div id="Bisection"> 
+        <h4> Método de Bisección </h4>
+        <div class= "box-container" id="bisectionForm">
+          <label for="xL">Límite inferior : </label>
+          <input type="number" id="xL" name="xL" value="0" class="var" step="any">
+          <label for="xU">Límite superiror : </label>
+          <input type="number" id="xU" name="xU" value="0" class="var" step="any">
+          <div id="function">
+            <div class="box-container" id="functionInputs">
+                  <label for="xSqr">f(x):  </label>
+                  <input type="number" id="xSqr" name="xSqr" value="0" class="funcVar" step="any">
+                  <label for="xSqr"> X&sup2; + </label>
+                  <input type="number" id="xLnl" name="xLnl" value="0" class="funcVar" step="any">
+                  <label for="xLnl"> X + </label>
+                  <input type="number" id="indVal" name="indVal" value="0" class="funcVar" step="any">
+            </div>
+          </div>
+          <div>
+            <label for="stopMethods">Criterio de paro: </label>
+            <select name="stopMethods" id="stopMethods">
+              <option value="0">Criterio de paro</option>
+              <option value="1">Número de Iteraciones</option>
+              <option value="2">Aproximar a cero</option>
+            </select>
+          </div>
+          <div id="criteriaMethod">
+            <label for="criteria">Porcentaje: </label>
+            <input type="number" id="criteria" name="criteria" value="0" class="var" step="any">
+          </div>
+          <div id="iterationMethod" style="display: none;">
+            <label for="iteration">Porcentaje: </label>
+            <input type="number" id="iteration" name="iteration" value="0" class="var" step="any">
+          </div>
+          <!--<table>  //HAY QUE ESCONDER ESTO DE MIENTRAS
+              <tr>
+                <td id="column1">x</td>
+                <td id="column2">f(x)</td>
+              </tr>
+            </table>-->
+          <div>
+            <label for="root">Raíz aproximada: </label>
+            <input type="text" id="root" name="root"  class="var" readonly>
+            <label for="root">aprox</label>
+          </div>
+          <button type="button" value="Submit" class="result" id="resultBisec">Calcular f(x)</button>
+          <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
+        </div>
+      </div>
+      </header>
+<section class="content sau">
+    <h2 class="title">¿Como funciona el Metodo de bisección?</h2>
+    <p>El método de bisección es un método numérico para encontrar la raíz de una función en un intervalo dado. Es un método iterativo que se basa en el teorema del valor intermedio. El método de bisección se puede utilizar para funciones continuas y diferentes en un intervalo cerrado [a, b] donde la función cambia de signo.
+    <p> El método de bisección funciona de la siguiente manera:</p>
+      
+     <p>1.-Seleccionar un intervalo cerrado [a, b] donde la función cambia de signo.</p> 
+     <p>2.-Calcular el punto medio c del intervalo: c = (a + b)/2</p> 
+     <p>3.-Evaluar la función en el punto medio c: f(c)</p> 
+     <p>4.-Si f(c) es igual a cero, entonces c es la raíz buscada.</p>
+     <p>5.-Si f(c) tiene el mismo signo que f(a), entonces la raíz está en el intervalo [c, b]. En este caso, se redefine el intervalo [a, b] como [c, b] y se repite el proceso desde el paso 2.</p>
+     <p>6.-Si f(c) tiene el mismo signo que f(b), entonces la raíz está en el intervalo [a, c]. En este caso, se redefine el intervalo [a, b] como [a, c] y se repite el proceso desde el paso 2.</p>
+      El método de bisección es un método lento, pero seguro y confiable para encontrar raíces de funciones. Una de las principales desventajas del método de bisección es que puede requerir un gran número de iteraciones para obtener una precisión suficiente.</p>
+        </div>
+    </section>
+      <div class="warnings">
+        <dialog open class="initWarning" id="initWarning">
+          Antes de llenar los campos, asegúrate de: <br>
+          - Usar SÓLO números.<br>
+          - No dejar campos vacíos.<br>
+          - No repetir las "x".
+        </dialog>
+        <dialog open class="errorWarning" id="errorWarning">
+          ERROR: Asegúrate de: <br>
+          - Usar SÓLO números.<br>
+          - No dejar campos vacíos.<br>
+          - No repetir las "x".
+        </dialog>
+      </div>
+    </body>
+  </html>

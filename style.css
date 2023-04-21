@@ -1,144 +1,283 @@
 *{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 body{
-  text-align: center;
-  font-family: Arial;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
 }
 
-.head{
+h1{ font-size: 3.5em;}
+h2{ font-size: 2.7em;}
+h3{ font-size: 2em;}
+p{ font-size: 1.25em;}
+ul{ list-style: none;}
+li{ font-size: 1.25em;}
+
+button{
+    font-size: 1.25em;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: white;
+    background-color: blueviolet;
+}
+
+button:hover{
+    background-color: rgb(101, 33, 165);
+}
+
+.container{
+    max-width: 1400px;
+    margin: auto;
+}
+
+.color-acento{ color:blueviolet; }
+
+header{
+    background-color: rgb(245,245,245);
+    
+}
+
+header .logo{
+    margin: 0;
+    padding: 25px 30px;
+    font-weight: bold;
+    color: blueviolet;
+    font-size: 1.6em;
+}
+
+header .container{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    height: 80px;
-    background: #e39999;
-    position:fixed;
-    width: 100%;
-    z-index: 100;
 }
 
-.navbar {
+header nav{
     display: flex;
-    margin-right: 15px;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 25px;
+}
 
-}
-.logo {
-    margin-left: 30px;
-}
-.logo a{
+header a{
+    padding: 5px 12px;
     text-decoration: none;
-    color: aliceblue;
-    text-transform: uppercase;
-    font-size: 20px;
+    font-weight: bold;
+    color: black;
 }
 
-.navbar a {
-    display: block;
-    padding: 23px 20px;
-    color: aliceblue;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 20px;
-    margin: 0.2rem;
-    border-radius: 1rem;
+header a:hover{
+    color: blueviolet;
 }
 
-.navbar a:hover {
-    background: #f59696;
-}
-
-
-.header{
+#hero{
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    height: 90vh;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    )
+    ,url("IMG/David\ +.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
-.header {
- height: 60vh !important;
- background: url(IMG/Index.png) no-repeat center;
- background-attachment: fixed;
- background-size: cover;
-
-}
-.title {
-    margin-bottom: 40px;
-    font-size: 50px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-.titleh {
-    margin-bottom: 40px;
-    font-size: 50px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: aliceblue;
+#hero h1{
+    color: white;
 }
 
-p{
-    margin-bottom: 40px;
-    font-size: 18px;
+#somos-proya .container{
+    text-align: center;
+    padding: 200px 12px;
 }
 
-.content {
-    height: 80vh;
+#nuestros-metodos{
+    background-color: rgb(30,30,30);
+    color: white;
+    text-align: center;
+}
+
+#nuestros-metodos .container{
+    padding: 150px 12px;
+}
+
+#nuestros-metodos h2{
+    margin-top: 0;
+    font-size: 3.2em;
+}
+
+#nuestros-metodos p{
+    display: none;
+}
+
+#nuestros-metodos .carta{
+    background-position: center center;
+    background-size: cover;
+    padding: 50px 0px;
+    margin: 30px;
+    border-radius: 15px;
+}
+
+#integrantes .container{
+    text-align: center;
+    padding: 250px 12px;
+}
+
+#integrantes li{
+    margin: 16px 0px;
+    font-weight: bold;
+}
+
+#final{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    text-align: center;
+    background-color: rgb(30,30,30);
+    color: white;
+    height: 80vh;
 }
 
-.sau {
-    padding: 85px;
-    background: rgb(181, 156, 156);
-    
+#final h2{
+    font-size: 9vw;
 }
 
-.box-container {
+footer{
+    background-color: rgb(230,230,230);
+}
+
+footer p{
+    margin: 0;
+    padding: 12px;
+    color: rgb(100,100,100);
+}
+
+footer .container{
+    height: 150px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    text-align: center;
-}
-.box-container .box {
-    height: 11rem;
-    width: 17rem;
-    background: rgb(248, 198, 198);
-    text-align: center;
-    border-radius: 1rem;
-    box-shadow: 0 .3 5rem rgba(123, 76, 76, 0.5);
-    margin: 2rem;
-}
-.box-container .box i{
-    height: 3rem;
-    width: 3rem;
-    line-height: 3rem;
-    text-align: center;
-    border-radius: 50%;
-    color: aliceblue;
-    background: #f28484;
+    align-items: flex-end;
 }
 
-.box-container .box a{
-    font-size: 20px;
-    color: #f28484;
-    text-decoration: none;
+@media (min-width: 850px){
+    header{
+        position: fixed;
+        width: 100%;
+    }
+
+    header .container{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    header nav{
+        flex-direction: row;
+        padding-bottom: 0;
+        padding-right: 20px;
+    }
+
+    #hero h1{
+        font-size: 5em;
+    }
+
+    #somos-proya .container{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #somos-proya .texto{
+        width: 50%;
+        max-width: 600px;
+        text-align: initial;
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #somos-proya h2{
+        margin-top: 0px;
+    }
+
+    #somos-proya .img-container{
+        background-image: url("IMG/Index.png");
+        background-size: cover;
+        background-position: center center;
+        height: 500px;
+        width: 400px; 
+    }
+
+    #nuestros-metodos .metodos{
+        display: flex;
+        justify-content: center;
+    }
+
+    #nuestros-metodos p{
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    #nuestros-metodos h2{
+        font-size: 4em;
+    }
+
+    #nuestros-metodos h3{
+        margin-top: 0;
+    }
+
+    #nuestros-metodos .carta{
+        padding: 50px;
+        background-size: 100% 150px;
+        background-repeat: no-repeat;
+        background-position-y: 0;
+        background-color: rgba(50, 50, 50, 1);
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    }
+
+    #integrantes{
+        background-image: url("IMG/David\ +.jpg");
+        background-repeat: no-repeat;
+        background-size: 500px 400px;
+        background-position: calc(100vw - 500px) 120px;
+    }
+
+    #integrantes .container{
+        text-align: initial;
+    }
+
+    #integrantes ul{
+        margin-left: 100px;
+    }
+
+    #final h2{
+        font-size: 5em;
+    }
+
+    #final button{
+        font-size: 2em;
+    }
+
+    footer .container{
+        justify-content: flex-end;
+    }
 }
 
-#greeting {
-    opacity: 0.5;
-    z-index: 999;
-    text-align: center;
-    display: block;
-    color: white;
-    font-weight: bold;
-    background-color: rgb(222, 122, 122);
-    position:fixed; top: 7%;
-    animation: dropAndFade 10s ease forwards;
-  }
+@media (min-width: 1200px) {
+    #integrantes{
+        background-position-x: calc(100vw - 800px);
+    }
+}

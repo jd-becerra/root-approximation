@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodos ecuaciones no lineales</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="IMG/Icon Proyect.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    
+    <div class="head">
+
+        <div class="logo">
+            <a href="">Inicio</a>
+        </div>
+        <nav class="navbar">
+            <a href="./bisection/bisection.html">Método de Bisección</a>
+            <a href="http://">Método de Newton</a>
+            <a href="http://">Método de la secante</a>
+            <a href="http://">Método de sustitución sucesiva</a>
+            <a href="http://">Método de Bairstow</a>
+            <a href="http://">Agregar</a>
+        </nav>
+    </div>
+    <header class="content header">
+        <h2 class="titleh">Métodos de solución de ecuaciones no lineales</h2>
+     <!--  Todavia no he investigado esto <div>
+            <dialog open class="greeting" id="greeting">
+                Bienvenido a la calculadora de<br>
+                Métodos de Ecuaciones no lineales<br><br>
+                Selecciona un método para continuar
+        </div>--> 
+    </header>
+<section class="content sau">
+    <h2 class="title">Descripciones de los Metodos</h2>
+    <p>Existen ecuaciones cuya solución, mediante técnicas algebraicas tradicionales,
+        pueden resultar difíciles de obtener, y es cuando podemos utilizar otros métodos para
+        aproximarnos a la solución por eso estan los siguientes metodos que pueden ser usados para su solución.</p>
+        <div class="box-container">
+
+            <div class="box">
+            <i class="fab fa-angular"></i>
+            <a href="./bisection/bisection.html">Biseccion</a>
+            <p> Es un algoritmo de búsqueda de raíces que trabaja dividiendo el intervalo a la mitad y seleccionando el subintervalo que tiene la raíz.</p>
+            </div>
+            
+            <div class="box">
+                <i class="fab fa-adn"></i>
+                <a href="http://">Newton-Raphson</a>
+                <p>Método iterativo que utiliza la derivada de la función para mejorar la precisión de la estimación de la raíz en cada iteración.</p>
+                </div>
+                
+            <div class="box">
+                <i class="fab fa-youtube"></i>
+                <a href="http://">Secante</a>
+                <p>Trata de ir trazando rectas secantes a la curva de la función buscada, y se va comprobando la intersección de estas con el eje x para ver si es la raíz que buscamos.</p>
+                </div>
+            
+                <div class="box">
+                <i class="fab fa-angular"></i>
+                <a href="http://">Bairstow</a>
+                <p>Aproximación del polinomio original mediante un polinomio cuadrático, y luego se utilizan iteraciones para mejorar esta aproximación hasta que se alcance una precisión deseada.</p>
+                </div>
+                    
+            <div class="box">
+                <i class="fab fa-adn"></i>
+                <a href="http://">Sustitucion sucesiva</a>
+                <p>Despejando una variable en términos de las otras y sustituyéndola en otra ecuación, repitiendo el proceso para cada variable.</p>
+                </div>
+                        
+            <div class="box">
+                <i class="fab fa-youtube"></i>
+                <a href="http://">Falsa posición</a>
+                <p>Se basa en la interpolación lineal de la función entre dos puntos del intervalo.</p>
+                </div>
+        </div>
+    </section>
+</body>
+</html>
