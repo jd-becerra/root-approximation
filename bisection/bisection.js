@@ -16,6 +16,7 @@ window.onload = () => {
   stopMethods.addEventListener('change', function(e){
     switch(this.value) {
       case '0':
+        document.getElementById("iterationMethod").style.display = "none";
         document.getElementById("criteriaMethod").style.display = "block";
         break;
       case '1':
@@ -38,7 +39,7 @@ window.onload = () => {
     let criteriaOption = document.getElementById('stopMethods').value;
 
     //Validar que los campos no estén vacíos ni incorrectos
-    values = [xL, xU, squareVal, linVal, independentVal]
+    values = [xL, xU, squareVal, linVal, independentVal];
     checkValues(values, criteriaOption); 
 
     let calculator = new Bisection();
@@ -94,7 +95,6 @@ class Bisection {
 
     let criteria = 0;
 
-    if( criteriaOption == 1 ) { let i = 0; }
     //Iniciar iteraciones
     do {
       //Calcular nueva xR
@@ -113,8 +113,7 @@ class Bisection {
       if(criteriaOption == 0 || criteriaOption == 2) {
         criteria = this.relativeError(xR, prevXR);
       } else if(criteriaOption == 1) {
-        criteria = i;
-        i++;
+        criteria++;
       }
 
     } while(this.evaluateStop(criteria, criteriaOption));
@@ -128,7 +127,7 @@ class Bisection {
         return criteria > +(document.getElementById('criteria').value);
         break;
       case 1:
-        return criteria > +(document.getElementById('iteration').value);
+        return criteria < (+(document.getElementById('iteration').value) - 1);
         break;
       case 2:
         return criteria >= 0.001;
