@@ -135,7 +135,7 @@ class Secant {
 
       //Utilizar un metodo para evaluar si parar o no
       if(criteriaOption == 0 || criteriaOption == 2) {
-        criteria = this.relativeError(xR, prevXR);
+        criteria = this.relativeError(xR, xU);
       } else if(criteriaOption == 1) {
         criteria++;
       }
