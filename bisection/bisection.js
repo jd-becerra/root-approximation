@@ -20,6 +20,7 @@ window.onload = () => {
         break;
       case '1':
         document.getElementById("criteriaMethod").style.display = "none";
+        document.getElementById("iterationMethod").style.display = "block";
         break;
       case '2':
         document.getElementById("criteriaMethod").style.display = "none";
@@ -36,6 +37,10 @@ window.onload = () => {
     let independentVal = document.getElementById('indVal').value;
     let criteriaOption = document.getElementById('stopMethods').value;
 
+    //Validar que los campos no estén vacíos ni incorrectos
+    values = [xL, xU, squareVal, linVal, independentVal]
+    checkValues(values, criteriaOption); 
+
     let calculator = new Bisection();
     let res = calculator.bisection(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
 
@@ -44,6 +49,26 @@ window.onload = () => {
 
 }
 
+function checkValues(values, criteriaOption) {
+  for (let val of values) {
+    if (isNumberValid(val)) {
+      return false;
+    }
+  }
+  if (values[0] == values[1]) {
+    return false; //if xL equal to xU
+  } 
+  //TODO: check values of criteria for stopping (in all cases)
+
+  return true; //only if all values are valid
+}
+
+function isNumberValid(val) {
+  if (val == "0") {
+    return false;
+  }
+  return (isNaN(val) && isNaN(parseFloat(val))) || val.trim() == "" || !val;
+}
 
 //Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
 class Bisection {
