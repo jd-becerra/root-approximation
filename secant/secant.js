@@ -35,7 +35,7 @@ window.onload = () => {
   });
 
   //Tomar valores si se presiona el botón de "resultado"
-  document.getElementById('resultBisec').addEventListener('click', function(e) {
+  document.getElementById('result').addEventListener('click', function(e) {
     let xL = document.getElementById('xL').value;
     let xU = document.getElementById('xU').value;
     let squareVal = document.getElementById('xSqr').value;
@@ -48,8 +48,8 @@ window.onload = () => {
     if (checkValues(values, +criteriaOption)) {
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
-      let calculator = new Bisection();
-      let res = calculator.bisection(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
+      let calculator = new Secant();
+      let res = calculator.secant(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
       document.getElementById("root").value = res;
     } else {
       document.getElementById('errorWarning').style.display = "block";
@@ -108,47 +108,30 @@ function isNotNumberValid(val) {
 }
 
 //Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
-class Bisection {
-  bisection(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
-    const negMapY = new Map();
-    const posMapY = new Map();
+class Secant {
+  secant(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
     let fXL = this.functionX(xL,squareVal,linVal,independentVal);
     let fXU = this.functionX(xU,squareVal,linVal,independentVal);
 
-    if(fXL < 0) { negMapY.set(fXL, xL); posMapY.set(fXU, xU); }
-    else { posMapY.set(fXL, xL); negMapY.set(fXU, xU); }
-
     //Calcular primera X
-    let xR = (xL+xU)/2;
+    let xR = (xU - ((fXU*(xL-xU)) / (fXL - fXU)));
     let funcXR = this.functionX(xR,squareVal,linVal,independentVal);
-    if (funcXR >= 0) {
-      posMapY.set(funcXR, xR);
-    } else {
-      negMapY.set(funcXR, xR);
-    }
     
     this.updateIterationTable(xR, funcXR);
-
-    let newX = negMapY.get(Math.max(...negMapY.keys()));  //Obtener mayor numero de numeros negativos
-    let prevX = posMapY.get(Math.min(...posMapY.keys())); //Obtener menor numero de numeros positivos
 
     let criteria = 0;
 
     //Iniciar iteraciones
     do {
-      //Calcular nueva xR
-      let prevXR = xR;
-      xR = (newX + prevX)/2;
+      console.log(xL, xU, xR);
+      xL = xU;
+      xU = xR;
+      fXL = this.functionX(xL,squareVal,linVal,independentVal);
+      fXU = this.functionX(xU,squareVal,linVal,independentVal);
+      xR = (xU - ((fXU*(xL-xU)) / (fXL - fXU)));
       funcXR = this.functionX(xR,squareVal,linVal,independentVal);
-      if (funcXR >= 0) {
-        posMapY.set(funcXR, xR);
-      } else {
-        negMapY.set(funcXR, xR);
-      }
-      newX = negMapY.get(Math.max(...negMapY.keys()));  //Obtener mayor numero de numeros negativos
-      prevX = posMapY.get(Math.min(...posMapY.keys())); //Obtener menor numero de numeros positivos
 
-     this.updateIterationTable(xR, funcXR);
+      this.updateIterationTable(xR, funcXR);
 
       //Utilizar un metodo para evaluar si parar o no
       if(criteriaOption == 0 || criteriaOption == 2) {

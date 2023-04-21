@@ -35,7 +35,7 @@ window.onload = () => {
   });
 
   //Tomar valores si se presiona el botón de "resultado"
-  document.getElementById('resultBisec').addEventListener('click', function(e) {
+  document.getElementById('result').addEventListener('click', function(e) {
     let xL = document.getElementById('xL').value;
     let xU = document.getElementById('xU').value;
     let squareVal = document.getElementById('xSqr').value;
@@ -48,8 +48,8 @@ window.onload = () => {
     if (checkValues(values, +criteriaOption)) {
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
-      let calculator = new Bisection();
-      let res = calculator.bisection(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
+      let calculator = new FalsePosition();
+      let res = calculator.falsePosition(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
       document.getElementById("root").value = res;
     } else {
       document.getElementById('errorWarning').style.display = "block";
@@ -108,8 +108,8 @@ function isNotNumberValid(val) {
 }
 
 //Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
-class Bisection {
-  bisection(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
+class FalsePosition {
+  falsePosition(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
     const negMapY = new Map();
     const posMapY = new Map();
     let fXL = this.functionX(xL,squareVal,linVal,independentVal);
@@ -119,7 +119,8 @@ class Bisection {
     else { posMapY.set(fXL, xL); negMapY.set(fXU, xU); }
 
     //Calcular primera X
-    let xR = (xL+xU)/2;
+    let xR = xU - ((fXU*(xL - xU)) / (fXL - fXU));
+    console.log(xR);
     let funcXR = this.functionX(xR,squareVal,linVal,independentVal);
     if (funcXR >= 0) {
       posMapY.set(funcXR, xR);
@@ -136,9 +137,12 @@ class Bisection {
 
     //Iniciar iteraciones
     do {
+      console.log(newX, prevX, xR);
       //Calcular nueva xR
       let prevXR = xR;
-      xR = (newX + prevX)/2;
+      let fXU = this.functionX(prevX,squareVal,linVal,independentVal);
+      let fXL = this.functionX(newX,squareVal,linVal,independentVal);
+      xR = prevX - ((fXU*(newX - prevX)) / (fXL - fXU));
       funcXR = this.functionX(xR,squareVal,linVal,independentVal);
       if (funcXR >= 0) {
         posMapY.set(funcXR, xR);
