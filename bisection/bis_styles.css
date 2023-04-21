@@ -101,7 +101,7 @@ header a:hover{
   color: white;
 }
 
-#somos-proya .container{
+#Description .container{
   text-align: center;
   padding: 200px 12px;
 }
@@ -196,12 +196,12 @@ footer .container{
       font-size: 5em;
   }
 
-  #somos-proya .container{
+  #Description .container{
       display: flex;
       justify-content: space-evenly;
   }
 
-  #somos-proya .texto{
+  #Description .texto{
       width: 50%;
       max-width: 600px;
       text-align: initial;
@@ -211,11 +211,11 @@ footer .container{
       justify-content: center;
   }
 
-  #somos-proya h2{
+  #Description h2{
       margin-top: 0px;
   }
 
-  #somos-proya .img-container{
+  #Description .img-container{
       background-image: url("../web_img/bisection.png");
       background-size: auto;
       background-position: center center;
