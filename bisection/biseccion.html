@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Metodos No lineales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OWN CSS FILES-->
+    <link rel="stylesheet" href="./bis_styles.css"  type="text/css" />
+    <!-- END OWN CSS FILES-->
+    <script type="text/javascript" src="./bisection.js"></script>
+    <link rel="stylesheet" href="bis_styles copy.css">
+    <link rel="icon" href="IMG/Icon Proyect.ico">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <p class="logo">Bisección</p>
+            <nav>
+                <a href="../index.html">Pagina Inicio</a>
+                <a href="http://">Método de la falsa posicion</a>
+                <a href="http://">Método de newton</a>
+                <a href="http://">Método de la secante</a>
+                <a href="http://">Método de sustitución sucesiva</a>
+                <a href="http://">Método de Bairstow</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+      <div class= "box-container" id="bisectionForm">
+        <label for="xL">Límite inferior : </label>
+        <input type="number" id="xL" name="xL" value="0" class="var" step="any">
+        <label for="xU">Límite superiror : </label>
+        <input type="number" id="xU" name="xU" value="0" class="var" step="any">
+        <div id="function">
+          <div class="box-container" id="functionInputs">
+                <label for="xSqr">f(x):  </label>
+                <input type="number" id="xSqr" name="xSqr" value="0" class="funcVar" step="any">
+                <label for="xSqr"> X&sup2; + </label>
+                <input type="number" id="xLnl" name="xLnl" value="0" class="funcVar" step="any">
+                <label for="xLnl"> X + </label>
+                <input type="number" id="indVal" name="indVal" value="0" class="funcVar" step="any">
+          </div>
+        </div>
+        <div>
+          <label for="stopMethods">Criterio de paro: </label>
+          <select name="stopMethods" id="stopMethods">
+            <option value="0">Criterio de paro</option>
+            <option value="1">Número de Iteraciones</option>
+            <option value="2">Aproximar a cero</option>
+          </select>
+        </div>
+        <div id="criteriaMethod">
+          <label for="criteria">Porcentaje: </label>
+          <input type="number" id="criteria" name="criteria" value="0" class="var" step="any">
+        </div>
+        <div id="iterationMethod" style="display: none;">
+          <label for="iteration">Porcentaje: </label>
+          <input type="number" id="iteration" name="iteration" value="0" class="var" step="any">
+        </div>
+        <!--<table>  //HAY QUE ESCONDER ESTO DE MIENTRAS
+            <tr>
+              <td id="column1">x</td>
+              <td id="column2">f(x)</td>
+            </tr>
+          </table>-->
+        <div>
+          <label for="root">Raíz aproximada: </label>
+          <input type="text" id="root" name="root"  class="var" readonly>
+          <label for="root">aprox</label>
+        </div>
+        <button type="button" value="Submit" class="result" id="resultBisec">Calcular f(x)</button>
+        <button type="button" value="Resetear" class="reset" id="reset">Resetear Valores</button>
+      </div>
+    </div>
+    </header>
+    </section>
+
+    <section id="final">
+      <h2>Podria ser la tabla aca</h2>
+  </section>
+
+    <section id="Description">
+        <div class="container">
+            <div class="img-container"></div>
+            <div class="texto">
+
+                <h2> <span class="color-acento">¿Como funciona el metodo de bisección?</span></h2>
+                <p>El método de bisección es un método numérico para encontrar la raíz de una función en un intervalo dado. Es un método iterativo que se basa en el teorema del valor intermedio. El método de bisección se puede utilizar para funciones continuas y diferentes en un intervalo cerrado [a, b] donde la función cambia de signo.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; David-Aldo 2022</p>
+        </div>
+    </footer>
+</body>
+</html>
