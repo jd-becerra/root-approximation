@@ -10,7 +10,20 @@ window.onload = () => {
     }
   });
 
-  //resetValues(); 
+  resetValues(); 
+  
+  //Mostrar criterio de inicio deseado
+  let startMethods = document.getElementById("startMethods");
+  startMethods.value = '0';
+  startMethods.addEventListener('change', function(e) {
+    if(this.value == '0') {
+      document.getElementById("intervalStart").style.display = "none";
+      document.getElementById("valStart").style.display = "inline-block";
+    } else {
+      document.getElementById("valStart").style.display = "none";
+      document.getElementById("intervalStart").style.display = "inline-block";
+    }
+  });
 
   //Mostrar el critero de paro elegido
   let stopMethods = document.getElementById("stopMethods");
@@ -36,29 +49,31 @@ window.onload = () => {
 
   //Tomar valores si se presiona el botón de "resultado"
   document.getElementById('result').addEventListener('click', function(e) {
-    let xL = document.getElementById('xL').value;
-    let xU = document.getElementById('xU').value;
     let squareVal = document.getElementById('xSqr').value;
     let linVal = document.getElementById('xLnl').value;
     let independentVal = document.getElementById('indVal').value;
     let criteriaOption = document.getElementById('stopMethods').value;
-
+    
+    let startOpt = document.getElementById("startMethods").value;
     //Validar que los campos no estén vacíos ni incorrectos
-    limits = [xL, xU];
+    let limits = [];
+    if(startOpt == '0') {
+      let xI = document.getElementById("xI").value;
+      limits = [xI];
+    } else {
+      let xL = document.getElementById("xL").value;
+      let xU = document.getElementById("xU").value;
+      limits = [xL, xU];
+    }
     values = [squareVal, linVal, independentVal];
     let xI = 0;
-    let setLimit = false;
-    if (checkValues(limits,values, +criteriaOption)) {
-      if(!isNotNumberValid(xL) && !isNotNumberValid(xU)) {
-        let xI = (xL + xU) / 2;
-      } else {
-        if(!isNotNumberValid(xL)) {
-          let xI = xL;
-        } else {
-          let xI = xU;
-        } 
-      }
 
+    if (checkValues(limits, values, +criteriaOption)) {
+      if(startOpt == '0') {
+        xI = limits[0];
+      } else {
+        xI = (limits[0] + limits[1]) / 2;
+      }
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
       let calculator = new NewtonRaphson();
@@ -76,6 +91,7 @@ window.onload = () => {
 }
 
 function resetValues() {
+  document.getElementById("xI").value = 0;
   document.getElementById('xL').value = 0;
   document.getElementById('xU').value = 0;
   document.getElementById('xSqr').value = 0;
@@ -89,8 +105,10 @@ function resetValues() {
 }
 
 function checkValues(limits, values, criteriaOption) {
-  if (isNotNumberValid(limits[0]) && isNotNumberValid(limits[1])) {
-    return false;
+  for (let val of limits) {
+    if (isNotNumberValid(val)) { 
+      return false;
+    }
   }
   for (let val of values) {
     if (isNotNumberValid(val)) {
@@ -139,7 +157,6 @@ class NewtonRaphson{
 
     //Iniciar iteraciones
     do {
-      console.log(xI, xR);
       xI = xR;
       fXI = this.functionX(xI,squareVal,linVal,independentVal);
       dXI = this.derivativeX(xI,squareVal,linVal);
