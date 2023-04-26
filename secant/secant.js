@@ -45,14 +45,20 @@ window.onload = () => {
 
     //Validar que los campos no estén vacíos ni incorrectos
     values = [xL, xU, squareVal, linVal, independentVal];
-    if (checkValues(values, +criteriaOption)) {
+    if (checkValues(values, +criteriaOption) == 4) {
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
       let calculator = new Secant();
       let res = calculator.secant(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
       document.getElementById("root").value = res;
-    } else {
-      document.getElementById('errorWarning').style.display = "block";
+    } else if (checkValues(values, +criteriaOption) == 3) {
+      document.getElementById('Warningnumber').style.display = "block";
+    } else if (checkValues(values, +criteriaOption) == 1) {
+      document.getElementById('Warningpercentaje').style.display = "block";
+    } else if (checkValues(values, +criteriaOption) == 2) {
+      document.getElementById('Warningiterationin').style.display = "block";
+    } else if (checkValues(values, +criteriaOption) == 5) {
+      document.getElementById('Warningsame').style.display = "block";
     }
   });
 
@@ -78,26 +84,32 @@ function resetValues() {
 function checkValues(values, criteriaOption) {
   for (let val of values) {
     if (isNotNumberValid(val)) {
-      return false;
+      return 3;
     }
-  }
-  if (values[0] == values[1]) {
-    return false; //if xL equal to xU
   }
   //check values for stopping iteration
   if (criteriaOption == 0){
     let percentage = document.getElementById('criteria').value;
-    if (isNotNumberValid(percentage) || +percentage <= 0) {
-      return false;
+    if (isNotNumberValid(percentage)) {
+      return 3;
+    } else if (percentage <= 0) {
+      return 1; //if percentage is less than 0 or not a number
     }
   }
   if(criteriaOption == 1) {
     let iterations = document.getElementById('iteration').value;
-    if (isNotNumberValid(iterations) || +iterations <= 0 || !(iterations%1==0)) {
-      return false;
+    if (isNotNumberValid(iterations)) {
+      return 3;
+    } else if (iterations <= 0) {
+      return 1; //if iterations is less than 0 or not a number
+    } else if (!(iterations%1==0)){
+      return 2; //if iterations is not an integer
     }
   }
-  return true; //only if all values are valid
+  if (values[0] == values[1]) {
+    return 5; //if xL equal to xU
+  }
+  return 4; //only if all values are valid
 }
 
 function isNotNumberValid(val) {
@@ -107,7 +119,7 @@ function isNotNumberValid(val) {
   return (isNaN(val) && isNaN(parseFloat(val))) || val.trim() == "" || !val;
 }
 
-//Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
+//Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd) queso
 class Secant {
   secant(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
     let fXL = this.functionX(xL,squareVal,linVal,independentVal);
