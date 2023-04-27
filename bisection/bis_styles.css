@@ -300,6 +300,45 @@ footer .container{
   display: none;
   animation: dropAndFade 30s ease forwards;
 }
+#Warningnumber {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  position: fixed;top: 12%;
+  animation: drop 0.7s ease forwards;
+  display: none;
+  animation: dropAndFade 30s ease forwards;
+}
+
+#Warningpercentaje {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  position: fixed;top: 12%;
+  animation: drop 0.7s ease forwards;
+  display: none;
+  animation: dropAndFade 30s ease forwards;
+}
+
+#Warningiterationin {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  position: fixed;top: 12%;
+  animation: drop 0.7s ease forwards;
+  display: none;
+  animation: dropAndFade 30s ease forwards;
+}
+#Warningsame {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  position: fixed;top: 12%;
+  animation: drop 0.7s ease forwards;
+  display: none;
+  animation: dropAndFade 30s ease forwards;
+}
+
 
 @keyframes dropAndFade{
   0%{ display: block; }
