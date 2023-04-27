@@ -73,7 +73,10 @@ window.onload = () => {
       if(startOpt == '0') {
         xI = limits[0];
       } else {
-        xI = (limits[0] + limits[1]) / 2;
+        let xL = document.getElementById("xL").value;
+        let xU = document.getElementById("xU").value;
+        xI = (parseFloat(xL) + parseFloat(xU))/2;
+        console.log(xI);
       }
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
@@ -86,8 +89,6 @@ window.onload = () => {
       document.getElementById('Warningpercentaje').style.display = "block";
     } else if (checkValues(limits, values, +criteriaOption) == 2) {
       document.getElementById('Warningiterationin').style.display = "block";
-    } else if (checkValues(limits, values, +criteriaOption) == 5) {
-      document.getElementById('Warningsame').style.display = "block";
     }
   });
 
@@ -139,9 +140,6 @@ function checkValues(limits, values, criteriaOption) {
     } else if (!(iterations%1==0)){
       return 2; //if iterations is not an integer
     }
-  }
-  if (values[0] == values[1]) {
-    return 5; //if xL equal to xU
   }
   return 4; //only if all values are valid
 }
