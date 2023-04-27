@@ -85,24 +85,33 @@
                 <p>El método de falsa posición es un método numérico para encontrar aproximaciones a las soluciones de una ecuación no lineal. Se basa en trazar una línea recta entre dos valores iniciales de la función que tienen signos opuestos y utilizar la intersección de la línea con el eje x como una aproximación a la solución. Luego se reemplaza uno de los puntos iniciales con la intersección, según el signo del valor de la función evaluado en ese punto. Este proceso se repite hasta que se obtiene una aproximación satisfactoria. El método de falsa posición es similar al método de bisección, pero puede ser más rápido en algunos casos.
             </div>
         </div>
-    </section>
-    <div class="warnings">
-        <dialog open class="initWarning" id="initWarning">
-          Antes de calcular, asegúrate de: <br><br>
-          - Usar SÓLO números.<br>
-          - No dejar campos vacíos.<br>
-          - Escribir correctamente el límite inferior y superior.<br>
-          - No dejar el criterio de paro en "0"<br>
-          - Si utilizas el criterio de paro por iteraciones, no utilizar decimales
- 
-        </dialog>
-        <dialog open class="errorWarning" id="errorWarning">
+      </section>
+      <dialog open class="initWarning" id="initWarning">
+        Antes de calcular, asegúrate de: <br><br>
+        - Usar SÓLO números.<br>
+        - No dejar campos vacíos.<br>
+        - Escribir correctamente el límite inferior y superior.<br>
+        - No dejar el criterio de paro en "0"<br>
+        - No utilizar criterio de paro por iteraciones
+    </dialog>
+    <div id="errorWarnings">
+      <dialog open class="warning" id="Warningnumber">
           ERROR: Asegúrate de: <br><br>
           - Usar SÓLO números.<br>
-          - No dejar campos vacíos.<br>
-          - Escribir correctamente el límite inferior y superior.<br>
-          - No dejar el criterio de paro en "0"<br>
-          - No utilizar decimales en el criterio de paro por iteraciones
+          - No dejar campos vacíos.
+      </dialog>
+      <dialog open class="warning" id="Warningpercentaje">
+        ERROR: Asegúrate de: <br><br>
+        - Usar SÓLO números.<br>
+        - No dejar el criterio de paro en "0"<br>
+      </dialog>
+      <dialog open class="warning" id="Warningiterationin">
+        ERROR: Asegúrate de: <br><br>
+        - Sólo números enteros para iteraciones
+      </dialog>
+      <dialog open class="warning" id="Warningsame">
+        ERROR: <br><br>
+        - No puede ser el mismo valor en los dos límites
       </dialog>
     </div>
     <footer>
