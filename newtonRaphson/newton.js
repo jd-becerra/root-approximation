@@ -5,8 +5,9 @@ window.onload = () => {
   //Eliminar los diálogos de Inicio y de Error cuando el usuario haga click en la página
   document.addEventListener('mouseup', function(e) {
     document.getElementById("initWarning").style.display = "none";
-    if(document.getElementById("errorWarning").style.display == "block"){
-      document.getElementById("errorWarning").style.display = "none";
+    let warnings = document.getElementsByClassName('warning');  
+    for (let warning of warnings) {
+      warning.style.display = "none";
     }
   });
 
@@ -68,7 +69,7 @@ window.onload = () => {
     values = [squareVal, linVal, independentVal];
     let xI = 0;
 
-    if (checkValues(limits, values, +criteriaOption)) {
+    if (checkValues(limits, values, +criteriaOption) == 4) {
       if(startOpt == '0') {
         xI = limits[0];
       } else {
@@ -79,8 +80,14 @@ window.onload = () => {
       let calculator = new NewtonRaphson();
       let res = calculator.newtonRaphson(+xI, +squareVal, +linVal, +independentVal, +criteriaOption);
       document.getElementById("root").value = res;
-    } else {
-      document.getElementById('errorWarning').style.display = "block";
+    } else if (checkValues(limits, values, +criteriaOption) == 3) {
+      document.getElementById('Warningnumber').style.display = "block";
+    } else if (checkValues(limits, values, +criteriaOption) == 1) {
+      document.getElementById('Warningpercentaje').style.display = "block";
+    } else if (checkValues(limits, values, +criteriaOption) == 2) {
+      document.getElementById('Warningiterationin').style.display = "block";
+    } else if (checkValues(limits, values, +criteriaOption) == 5) {
+      document.getElementById('Warningsame').style.display = "block";
     }
   });
 
@@ -115,23 +122,28 @@ function checkValues(limits, values, criteriaOption) {
       return false;
     }
   }
-  if (values[0] == values[1]) {
-    return false; //if xL equal to xU
-  }
-  //check values for stopping iteration
   if (criteriaOption == 0){
     let percentage = document.getElementById('criteria').value;
-    if (isNotNumberValid(percentage) || +percentage <= 0) {
-      return false;
+    if (isNotNumberValid(percentage)) {
+      return 3;
+    } else if (percentage <= 0) {
+      return 1; //if percentage is less than 0 or not a number
     }
   }
   if(criteriaOption == 1) {
     let iterations = document.getElementById('iteration').value;
-    if (isNotNumberValid(iterations) || +iterations <= 0 || !(iterations%1==0)) {
-      return false;
+    if (isNotNumberValid(iterations)) {
+      return 3;
+    } else if (iterations <= 0) {
+      return 1; //if iterations is less than 0 or not a number
+    } else if (!(iterations%1==0)){
+      return 2; //if iterations is not an integer
     }
   }
-  return true; //only if all values are valid
+  if (values[0] == values[1]) {
+    return 5; //if xL equal to xU
+  }
+  return 4; //only if all values are valid
 }
 
 function isNotNumberValid(val) {
