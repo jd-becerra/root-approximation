@@ -89,7 +89,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("/IMG/Cover.jpg");
+    ,url("/IMG_Index_global/Cover.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -214,7 +214,7 @@ footer .container{
     }
 
     #Description .img-container{
-        background-image: url("IMG/Index.png");
+        background-image: url("/IMG_Index_global/Index.png");
         background-size: cover;
         background-position: center center;
         height: 500px;

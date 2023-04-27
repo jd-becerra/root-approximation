@@ -228,8 +228,9 @@ footer .container{
   }
 
   #Description .img-container{
-      background-image: url("../web_img/bisection.png");
-      background-size: auto;
+      background-image: url("/IMG_Methods/falsaposicion.png");
+      background-size: auto 30%;
+      background-repeat: no-repeat;
       background-position: center center;
       height: 500px;
       width: 400px; 
