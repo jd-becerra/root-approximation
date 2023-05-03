@@ -78,7 +78,7 @@ window.onload = () => {
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
       let calculator = new NewtonRaphson();
-      let res = calculator.newtonRaphson(+xI, expFunc +criteriaOption);
+      let res = calculator.newtonRaphson(+xI, expFunc, +criteriaOption);
       document.getElementById("root").value = res;
     } else if (checkValues(limits, +criteriaOption) == 3) {
       document.getElementById('Warningnumber').style.display = "block";
