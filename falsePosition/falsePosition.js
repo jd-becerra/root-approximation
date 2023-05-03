@@ -1,4 +1,5 @@
 /** METODO DE BISECCIÓN*/
+const math = window.math;
 
 window.onload = () => {
 
@@ -39,18 +40,16 @@ window.onload = () => {
   document.getElementById('result').addEventListener('click', function(e) {
     let xL = document.getElementById('xL').value;
     let xU = document.getElementById('xU').value;
-    let squareVal = document.getElementById('xSqr').value;
-    let linVal = document.getElementById('xLnl').value;
-    let independentVal = document.getElementById('indVal').value;
+    let expFunc = document.getElementById('exp').value;
     let criteriaOption = document.getElementById('stopMethods').value;
 
     //Validar que los campos no estén vacíos ni incorrectos
-    values = [xL, xU, squareVal, linVal, independentVal];
-    if (checkValues(values, +criteriaOption) == 4) {
+    let values = [xL, xU];
+    if (checkValues(values, +criteriaOption, expFunc) == 4) {
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
       let calculator = new FalsePosition();
-      let res = calculator.falsePosition(+xL, +xU, +squareVal, +linVal, +independentVal, +criteriaOption);
+      let res = calculator.falsePosition(+xL, +xU, expFunc, +criteriaOption);
       document.getElementById("root").value = res;
     } else if (checkValues(values, +criteriaOption) == 3) {
       document.getElementById('Warningnumber').style.display = "block";
@@ -72,9 +71,7 @@ window.onload = () => {
 function resetValues() {
   document.getElementById('xL').value = 0;
   document.getElementById('xU').value = 0;
-  document.getElementById('xSqr').value = 0;
-  document.getElementById('xLnl').value = 0;
-  document.getElementById('indVal').value = 0;
+  document.getElementById('exp').value = 0;
   document.getElementById('criteria').value = 0;
   document.getElementById('iteration').value = 0;
   document.getElementById('root').value = 0;
@@ -122,11 +119,11 @@ function isNotNumberValid(val) {
 
 //Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
 class FalsePosition {
-  falsePosition(xL, xU, squareVal, linVal, independentVal, criteriaOption) {
+  falsePosition(xL, xU, expFunc, criteriaOption) {
     const negMapY = new Map();
     const posMapY = new Map();
-    let fXL = this.functionX(xL,squareVal,linVal,independentVal);
-    let fXU = this.functionX(xU,squareVal,linVal,independentVal);
+    let fXL = this.functionX(xL,expFunc);
+    let fXU = this.functionX(xU,expFunc);
 
     if(fXL < 0) { negMapY.set(fXL, xL); posMapY.set(fXU, xU); }
     else { posMapY.set(fXL, xL); negMapY.set(fXU, xU); }
@@ -134,7 +131,7 @@ class FalsePosition {
     //Calcular primera X
     let xR = xU - ((fXU*(xL - xU)) / (fXL - fXU));
     console.log(xR);
-    let funcXR = this.functionX(xR,squareVal,linVal,independentVal);
+    let funcXR = this.functionX(xR, expFunc);
     if (funcXR >= 0) {
       posMapY.set(funcXR, xR);
     } else {
@@ -153,10 +150,10 @@ class FalsePosition {
       console.log(newX, prevX, xR);
       //Calcular nueva xR
       let prevXR = xR;
-      let fXU = this.functionX(prevX,squareVal,linVal,independentVal);
-      let fXL = this.functionX(newX,squareVal,linVal,independentVal);
+      let fXU = this.functionX(prevX,expFunc);
+      let fXL = this.functionX(newX,expFunc);
       xR = prevX - ((fXU*(newX - prevX)) / (fXL - fXU));
-      funcXR = this.functionX(xR,squareVal,linVal,independentVal);
+      funcXR = this.functionX(xR,expFunc);
       if (funcXR >= 0) {
         posMapY.set(funcXR, xR);
       } else {
@@ -193,8 +190,11 @@ class FalsePosition {
     }
   }
 
-  functionX(x, squareVal, linVal, independentVal) {
-    return (squareVal*(x*x))+(linVal*x)+independentVal;
+  functionX(x, func) {
+    console.log(x);
+    let scope = {x: x}
+    console.log(scope, math.evaluate(func, scope));
+    return math.evaluate(func, scope);
   }
 
   relativeError(newVal, previousVal) {

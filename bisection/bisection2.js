@@ -1,18 +1,19 @@
-/** METODO DE BISECCIÓN*/
 const math = window.math;
+
+/** METODO DE BISECCIÓN*/
+
 
 window.onload = () => {
 
   //Eliminar los diálogos de Inicio y de Error cuando el usuario haga click en la página
   document.addEventListener('mouseup', function(e) {
     document.getElementById("initWarning").style.display = "none";
-    let warnings = document.getElementsByClassName('warning');  
-    for (let warning of warnings) {
-      warning.style.display = "none";
+    if(document.getElementById("errorWarning").style.display == "block"){
+      document.getElementById("errorWarning").style.display = "none";
     }
   });
 
-  resetValues(); 
+  //resetValues(); 
 
   //Mostrar el critero de paro elegido
   let stopMethods = document.getElementById("stopMethods");
@@ -37,7 +38,7 @@ window.onload = () => {
   });
 
   //Tomar valores si se presiona el botón de "resultado"
-  document.getElementById('result').addEventListener('click', function(e) {
+  document.getElementById('resultBisec').addEventListener('click', function(e) {
     let xL = document.getElementById('xL').value;
     let xU = document.getElementById('xU').value;
     let expFunc = document.getElementById('exp').value;
@@ -45,20 +46,14 @@ window.onload = () => {
 
     //Validar que los campos no estén vacíos ni incorrectos
     let values = [xL, xU];
-    if (checkValues(values, +criteriaOption, expFunc) == 4) {
+    if (checkValues(values, +criteriaOption)) {
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
-      let calculator = new Secant();
-      let res = calculator.secant(+xL, +xU, expFunc, +criteriaOption);
+      let calculator = new Bisection();
+      let res = calculator.bisection(+xL, +xU, expFunc, +criteriaOption);
       document.getElementById("root").value = res;
-    } else if (checkValues(values, +criteriaOption) == 3) {
-      document.getElementById('Warningnumber').style.display = "block";
-    } else if (checkValues(values, +criteriaOption) == 1) {
-      document.getElementById('Warningpercentaje').style.display = "block";
-    } else if (checkValues(values, +criteriaOption) == 2) {
-      document.getElementById('Warningiterationin').style.display = "block";
-    } else if (checkValues(values, +criteriaOption) == 5) {
-      document.getElementById('Warningsame').style.display = "block";
+    } else {
+      document.getElementById('errorWarning').style.display = "block";
     }
   });
 
@@ -71,7 +66,6 @@ window.onload = () => {
 function resetValues() {
   document.getElementById('xL').value = 0;
   document.getElementById('xU').value = 0;
-  document.getElementById('exp').value = 0;
   document.getElementById('criteria').value = 0;
   document.getElementById('iteration').value = 0;
   document.getElementById('root').value = 0;
@@ -82,32 +76,26 @@ function resetValues() {
 function checkValues(values, criteriaOption) {
   for (let val of values) {
     if (isNotNumberValid(val)) {
-      return 3;
+      return false;
     }
+  }
+  if (values[0] == values[1]) {
+    return false; //if xL equal to xU
   }
   //check values for stopping iteration
   if (criteriaOption == 0){
     let percentage = document.getElementById('criteria').value;
-    if (isNotNumberValid(percentage)) {
-      return 3;
-    } else if (percentage <= 0) {
-      return 1; //if percentage is less than 0 or not a number
+    if (isNotNumberValid(percentage) || +percentage <= 0) {
+      return false;
     }
   }
   if(criteriaOption == 1) {
     let iterations = document.getElementById('iteration').value;
-    if (isNotNumberValid(iterations)) {
-      return 3;
-    } else if (iterations <= 0) {
-      return 1; //if iterations is less than 0 or not a number
-    } else if (!(iterations%1==0)){
-      return 2; //if iterations is not an integer
+    if (isNotNumberValid(iterations) || +iterations <= 0 || !(iterations%1==0)) {
+      return false;
     }
   }
-  if (values[0] == values[1]) {
-    return 5; //if xL equal to xU
-  }
-  return 4; //only if all values are valid
+  return true; //only if all values are valid
 }
 
 function isNotNumberValid(val) {
@@ -117,35 +105,53 @@ function isNotNumberValid(val) {
   return (isNaN(val) && isNaN(parseFloat(val))) || val.trim() == "" || !val;
 }
 
-//Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd) queso
-class Secant {
-  secant(xL, xU, expFunc, criteriaOption) {
-    let fXL = this.functionX(xL,expFunc);
-    let fXU = this.functionX(xU,expFunc);
+//Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
+class Bisection {
+  bisection(xL, xU, expFunc, criteriaOption) {
+    console.log(expFunc);
+    const negMapY = new Map();
+    const posMapY = new Map();
+    let fXL = +this.functionX(xL,expFunc);
+    let fXU = +this.functionX(xU,expFunc);
+
+    if(fXL < 0) { negMapY.set(fXL, xL); posMapY.set(fXU, xU); }
+    else { posMapY.set(fXL, xL); negMapY.set(fXU, xU); }
 
     //Calcular primera X
-    let xR = (xU - ((fXU*(xL-xU)) / (fXL - fXU)));
-    let funcXR = this.functionX(xR,expFunc);
+    let xR = (xL+xU)/2;
+    let funcXR = +this.functionX(xR, expFunc);
+    if (funcXR >= 0) {
+      posMapY.set(funcXR, xR);
+    } else {
+      negMapY.set(funcXR, xR);
+    }
     
     this.updateIterationTable(xR, funcXR);
+
+    let newX = negMapY.get(Math.max(...negMapY.keys()));  //Obtener mayor numero de numeros negativos
+    let prevX = posMapY.get(Math.min(...posMapY.keys())); //Obtener menor numero de numeros positivos
 
     let criteria = 0;
 
     //Iniciar iteraciones
     do {
-      console.log(xL, xU, xR);
-      xL = xU;
-      xU = xR;
-      fXL = this.functionX(xL,expFunc);
-      fXU = this.functionX(xU,expFunc);
-      xR = (xU - ((fXU*(xL-xU)) / (fXL - fXU)));
-      funcXR = this.functionX(xR,expFunc);
+      //Calcular nueva xR
+      let prevXR = xR;
+      xR = (newX + prevX)/2;
+      funcXR = +this.functionX(xR,expFunc);
+      if (funcXR >= 0) {
+        posMapY.set(funcXR, xR);
+      } else {
+        negMapY.set(funcXR, xR);
+      }
+      newX = negMapY.get(Math.max(...negMapY.keys()));  //Obtener mayor numero de numeros negativos
+      prevX = posMapY.get(Math.min(...posMapY.keys())); //Obtener menor numero de numeros positivos
 
-      this.updateIterationTable(xR, funcXR);
+     this.updateIterationTable(xR, funcXR);
 
       //Utilizar un metodo para evaluar si parar o no
       if(criteriaOption == 0 || criteriaOption == 2) {
-        criteria = this.relativeError(xR, xU);
+        criteria = this.relativeError(xR, prevXR);
       } else if(criteriaOption == 1) {
         criteria++;
       }

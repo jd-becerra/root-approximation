@@ -6,20 +6,21 @@
     <!-- OWN CSS FILES-->
     <link rel="stylesheet" href="./sec_styles.css"  type="text/css" />
     <!-- END OWN CSS FILES-->
-    <script type="text/javascript" src="./secant.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.1/math.min.js"></script>
+    <script type="module" src="./secant.js"></script>
     <link rel="icon" href="IMG/Icon Proyect.ico">
 </head>
 <body>
     <header>
         <div class="container">
-            <p class="logo">Método de la Secante</p>
+            <p class="logo">Método de la Secante </p>
             <nav>
                 <a href="../index.html">Pagina Inicio</a>
-                <a href="../bisection/bisection.html">Método de Bisección</a>
-                <a href="../falsePosition/falsePosition.html">Método de la falsa posicion</a>
+                <a href="../bisection/bisection.html">Método de bisección</a>
                 <a href="../newtonRaphson/newton.html">Método de newton</a>
-              <!-- <a href="http://">Método de sustitución sucesiva</a> --> 
-              <!-- <a href="http://">Método de Bairstow</a> --> 
+                <a href="../falsePosition/falsePosition.html">Método de falsa posicion</a>
+               <!-- <a href="http://">Método de sustitución sucesiva</a> -->
+               <!-- <a href="http://">Método de Bairstow</a> -->
             </nav>
         </div>
     </header>
@@ -32,12 +33,8 @@
         <input type="number" id="xU" name="xU" value="0" class="var" step="any">
         <div id="function">
           <div class="box-container" id="functionInputs">
-                <label for="xSqr">f(x):  </label>
-                <input type="number" id="xSqr" name="xSqr" value="0" class="funcVar" step="any">
-                <label for="xSqr"> X&sup2; + </label>
-                <input type="number" id="xLnl" name="xLnl" value="0" class="funcVar" step="any">
-                <label for="xLnl"> X + </label>
-                <input type="number" id="indVal" name="indVal" value="0" class="funcVar" step="any">
+                <label for="exp">f(x):  </label>
+                <input type="text" id="exp" name="exp" value="x" class="funcVar" step="any">
           </div>
         </div>
         <div>
@@ -82,10 +79,15 @@
             <div class="texto">
 
                 <h2> <span class="color-acento">¿Como funciona el metodo de la secante?</span></h2>
-                <p>El método de la secante es un método numérico para encontrar aproximaciones a las soluciones de una ecuación no lineal. En este método, se comienza con dos aproximaciones iniciales a la solución y se traza una línea secante a la curva de la función que pasa por estos dos puntos. El punto de intersección de la secante con el eje x se toma como una nueva aproximación a la solución y se repite el proceso utilizando la última aproximación y la anterior, hasta que se alcanza una aproximación satisfactoria. El método de la secante es una extensión del método de Newton-Raphson y converge rápidamente a la solución, aunque puede divergir si se eligen aproximaciones inapropiadas o si la función presenta singularidades o puntos de inflexión.</p>
+                <p>El método de la secante es un método numérico para encontrar aproximaciones a las soluciones de una ecuación no lineal.
+                   En este método, se comienza con dos aproximaciones iniciales a la solución y se traza una línea secante a la curva de la función que pasa por estos dos puntos.
+                   El punto de intersección de la secante con el eje x se toma como una nueva aproximación a la solución y se repite el proceso utilizando la última aproximación y la anterior,
+                   hasta que se alcanza una aproximación satisfactoria. El método de la secante es una extensión del método de Newton-Raphson y converge rápidamente a la solución, aunque puede 
+                   divergir si se eligen aproximaciones inapropiadas o si la función presenta singularidades o puntos de inflexión.</p>
             </div>
         </div>
     </section>
+    <div class="warnings">
       <dialog open class="initWarning" id="initWarning">
         Antes de calcular, asegúrate de: <br><br>
         - Usar SÓLO números.<br>

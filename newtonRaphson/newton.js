@@ -50,9 +50,7 @@ window.onload = () => {
 
   //Tomar valores si se presiona el botón de "resultado"
   document.getElementById('result').addEventListener('click', function(e) {
-    let squareVal = document.getElementById('xSqr').value;
-    let linVal = document.getElementById('xLnl').value;
-    let independentVal = document.getElementById('indVal').value;
+    let expFunc = document.getElementById('exp').value;
     let criteriaOption = document.getElementById('stopMethods').value;
     
     let startOpt = document.getElementById("startMethods").value;
@@ -66,10 +64,9 @@ window.onload = () => {
       let xU = document.getElementById("xU").value;
       limits = [xL, xU];
     }
-    values = [squareVal, linVal, independentVal];
     let xI = 0;
 
-    if (checkValues(limits, values, +criteriaOption) == 4) {
+    if (checkValues(limits, +criteriaOption) == 4) {
       if(startOpt == '0') {
         xI = limits[0];
       } else {
@@ -81,13 +78,13 @@ window.onload = () => {
       document.getElementById('iterationTable').style.border = "1px solid white";
       document.getElementById('iterationTable').innerHTML = `<tr><th>x</th><th>f(x)</th></tr>`;
       let calculator = new NewtonRaphson();
-      let res = calculator.newtonRaphson(+xI, +squareVal, +linVal, +independentVal, +criteriaOption);
+      let res = calculator.newtonRaphson(+xI, expFunc +criteriaOption);
       document.getElementById("root").value = res;
-    } else if (checkValues(limits, values, +criteriaOption) == 3) {
+    } else if (checkValues(limits, +criteriaOption) == 3) {
       document.getElementById('Warningnumber').style.display = "block";
-    } else if (checkValues(limits, values, +criteriaOption) == 1) {
+    } else if (checkValues(limits, +criteriaOption) == 1) {
       document.getElementById('Warningpercentaje').style.display = "block";
-    } else if (checkValues(limits, values, +criteriaOption) == 2) {
+    } else if (checkValues(limits, +criteriaOption) == 2) {
       document.getElementById('Warningiterationin').style.display = "block";
     }
   });
@@ -102,9 +99,7 @@ function resetValues() {
   document.getElementById("xI").value = 0;
   document.getElementById('xL').value = 0;
   document.getElementById('xU').value = 0;
-  document.getElementById('xSqr').value = 0;
-  document.getElementById('xLnl').value = 0;
-  document.getElementById('indVal').value = 0;
+  document.getElementById('exp').value = 0;
   document.getElementById('criteria').value = 0;
   document.getElementById('iteration').value = 0;
   document.getElementById('root').value = 0;
@@ -112,14 +107,9 @@ function resetValues() {
   document.getElementById('iterationTable').style.border = "none"; 
 }
 
-function checkValues(limits, values, criteriaOption) {
+function checkValues(limits, criteriaOption) {
   for (let val of limits) {
     if (isNotNumberValid(val)) { 
-      return false;
-    }
-  }
-  for (let val of values) {
-    if (isNotNumberValid(val)) {
       return false;
     }
   }
@@ -145,7 +135,7 @@ function checkValues(limits, values, criteriaOption) {
 }
 
 function isNotNumberValid(val) {
-  if (val == "0") {
+  if (val === "0") {
     return false;
   }
   return (isNaN(val) && isNaN(parseFloat(val))) || val.trim() == "" || !val;
@@ -153,13 +143,13 @@ function isNotNumberValid(val) {
 
 //Clase con el método para calcular el resultado  (Oiga compañero Aldo que es esto xd)
 class NewtonRaphson{
-  newtonRaphson(xI, squareVal, linVal, independentVal, criteriaOption) {
-    let fXI = this.functionX(xI,squareVal,linVal,independentVal);
-    let dXI = this.derivativeX(xI, squareVal, linVal, independentVal);
+  newtonRaphson(xI, expFunc, criteriaOption) {
+    let fXI = this.functionX(xI,expFunc);
+    let dXI = this.derivativeX(xI, expFunc);
 
     //Calcular primera X
     let xR = xI - (fXI / dXI);
-    let funcXR = this.functionX(xR,squareVal,linVal, independentVal);
+    let funcXR = this.functionX(xR, expFunc);
     
     this.updateIterationTable(xR, funcXR);
 
@@ -168,10 +158,10 @@ class NewtonRaphson{
     //Iniciar iteraciones
     do {
       xI = xR;
-      fXI = this.functionX(xI,squareVal,linVal,independentVal);
-      dXI = this.derivativeX(xI,squareVal,linVal);
+      fXI = this.functionX(xI,expFunc);
+      dXI = this.derivativeX(xI,expFunc);
       xR = xI - (fXI / dXI);
-      funcXR = this.functionX(xR,squareVal,linVal,independentVal);
+      funcXR = this.functionX(xR,expFunc);
 
       this.updateIterationTable(xR, funcXR);
 
@@ -201,12 +191,16 @@ class NewtonRaphson{
     }
   }
 
-  functionX(x, squareVal, linVal, independentVal) {
-    return (squareVal*(x*x))+(linVal*x)+independentVal;
+  functionX(x, func) {
+    let scope = {x: x}
+    console.log(scope, math.evaluate(func, scope));
+    return math.evaluate(func, scope);
   }
 
-  derivativeX(x, squareVal, linVal) {
-    return (squareVal*2*x)+linVal;
+
+  derivativeX(x, expFunc) {
+    console.log(math.derivative(expFunc, 'x').evaluate({x: x}));
+    return math.derivative(expFunc, 'x').evaluate({x: x});
   }
 
   relativeError(newVal, previousVal) {
