@@ -1,4 +1,9 @@
-![Portada](IMG/Cover.png)
+# Click para visitar la página: 
+# https://raiz-aproximacion.netlify.app/
+
+![image](https://github.com/jd-becerra/root-approximation/assets/112126654/c039d330-14ca-489f-bea9-e5026c5d1147)
+
+
  ## Solución de Ecuaciones no lineales #
   **David Becerra**
   **Aldo Valdez**
@@ -18,7 +23,7 @@
 
 *Método de Bairstow*
 
-#### ¿Por que esto? ####
+#### ¿Por qué esto? ####
 
 Existen ecuaciones cuya solución, mediante técnicas algebraicas tradicionales,
 pueden resultar difíciles de obtener, y es cuando podemos utilizar otros métodos para
